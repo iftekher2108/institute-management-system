@@ -4,7 +4,7 @@ function AppBar({title, user}) {
 
         <div className="navbar bg-primary sticky top-0 z-50">
             <div className="flex-1">
-                <Link href={route('home')} className="btn btn-ghost text-xl">daisyUI</Link>
+                <Link href={route('home')} className="btn btn-ghost text-xl">Laravel</Link>
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">

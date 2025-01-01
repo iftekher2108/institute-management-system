@@ -21,11 +21,11 @@ const AuthenticatedLayout = ({ header, children }) => {
 
             <AppBar title={'parvez'} user={user}  />
 
-            <div className='grid grid-cols-10 p-2 gap-3'>
-                <div className="col-span-2">
+            <div className='grid grid-cols-12 p-2 gap-3'>
+                <div className="col-span-3">
                     <AppSideBar />
                 </div>
-                <Card className="col-span-8">
+                <Card className="col-span-9">
                     <div className="card">
                         {children}
                     </div>
