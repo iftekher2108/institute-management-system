@@ -4,6 +4,9 @@ import PrimaryButton from '@/Components/from_elements/PrimaryButton';
 import TextInput from '@/Components/from_elements/TextInput';
 import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
+import { Button } from 'primereact/button';
+import { FloatLabel } from 'primereact/floatlabel';
+import { InputText } from 'primereact/inputtext';
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
@@ -37,37 +40,23 @@ export default function UpdateProfileInformation({
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
 
-                    <TextInput
-                        id="name"
-                        className="mt-1 block w-full"
-                        value={data.name}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                        isFocused
-                        autoComplete="name"
-                    />
-
-                    <InputError className="mt-2" message={errors.name} />
+                <div className='my-6'>
+                    <FloatLabel>
+                        <InputText id="name" value={data.name} tooltip='Name' className='w-full mb-1' onChange={(e) => setData('name', e.target.value)} />
+                        <label htmlFor="name">Name</label>
+                    </FloatLabel>
+                    {errors.name && <span className='text-red-500'>{errors.name}</span>}
                 </div>
 
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        className="mt-1 block w-full"
-                        value={data.email}
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                        autoComplete="username"
-                    />
-
-                    <InputError className="mt-2" message={errors.email} />
+                <div className='my-6'>
+                    <FloatLabel>
+                        <InputText id="email" value={data.email} tooltip='Email' className='w-full mb-1' onChange={(e) => setData('email', e.target.value)} />
+                        <label htmlFor="email">Email</label>
+                    </FloatLabel>
+                    {errors.email && <span className='text-red-500'>{errors.email}</span>}
                 </div>
+
 
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
@@ -93,7 +82,8 @@ export default function UpdateProfileInformation({
                 )}
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+
+                    <Button label='Save' disabled={processing} />
 
                     <Transition
                         show={recentlySuccessful}
