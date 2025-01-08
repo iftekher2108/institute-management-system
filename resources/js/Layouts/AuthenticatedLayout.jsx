@@ -11,10 +11,6 @@ import { Card } from 'primereact/card';
 const AuthenticatedLayout = ({ header, children }) => {
     const user = usePage().props.auth.user;
 
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
-
-
     return (
 
         <>
@@ -28,13 +24,11 @@ const AuthenticatedLayout = ({ header, children }) => {
                 <Card className="col-span-9">
                     <div className="card">
                         {header && (
-                            <div className="shadow">
-                                <div className="mb-6">
+                                <div className="bg-primary p-4 rounded mb-4">
                                     <h2 className="text-xl font-semibold leading-tight text-white">
                                         {header}
                                     </h2>
                                 </div>
-                            </div>
                         )}
                         {children}
                     </div>

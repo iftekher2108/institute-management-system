@@ -4,6 +4,11 @@ import PrimaryButton from '@/Components/from_elements/PrimaryButton';
 import TextInput from '@/Components/from_elements/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, useForm } from '@inertiajs/react';
+import { Button } from 'primereact/button';
+import { FloatLabel } from 'primereact/floatlabel';
+// import { InputText } from 'primereact/inputtext';
+import { Password } from 'primereact/password';
+
 
 export default function ResetPassword({ token, email }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -56,6 +61,14 @@ export default function ResetPassword({ token, email }) {
                         onChange={(e) => setData('password', e.target.value)}
                     />
 
+                    <div className='mb-6'>
+                        <FloatLabel>
+                            <Password inputId="password" value={data.password} inputClassName='w-full' className='w-full' tooltip='password' feedback={false} onChange={(e) => setData('password', e.target.value)} />
+                            <label htmlFor="password">Password</label>
+                        </FloatLabel>
+                        {errors.password && <span className='text-red-500'>{errors.password}</span>}
+                    </div>
+
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
@@ -84,9 +97,9 @@ export default function ResetPassword({ token, email }) {
                 </div>
 
                 <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Reset Password
-                    </PrimaryButton>
+
+                    <Button label='Reset Password' className='btn btn-primary' disabled={processing} />
+
                 </div>
             </form>
         </GuestLayout>

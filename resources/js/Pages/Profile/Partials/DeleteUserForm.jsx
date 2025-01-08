@@ -7,10 +7,15 @@ import TextInput from '@/Components/from_elements/TextInput';
 import { useForm } from '@inertiajs/react';
 import { useRef, useState } from 'react';
 import { Button } from 'primereact/button';
+import { FloatLabel } from 'primereact/floatlabel';
+import { Password } from 'primereact/password';
+
+import { Dialog } from 'primereact/dialog';
 
 export default function DeleteUserForm({ className = '' }) {
-    const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
     const passwordInput = useRef();
+    const [visible, setVisible] = useState(false);
+
 
     const {
         data,
@@ -24,9 +29,6 @@ export default function DeleteUserForm({ className = '' }) {
         password: '',
     });
 
-    const confirmUserDeletion = () => {
-        setConfirmingUserDeletion(true);
-    };
 
     const deleteUser = (e) => {
         e.preventDefault();
@@ -39,9 +41,9 @@ export default function DeleteUserForm({ className = '' }) {
         });
     };
 
-    const closeModal = () => {
-        setConfirmingUserDeletion(false);
-
+    const closeModal = (e) => {
+        e.preventDefault()
+        if (!visible) return; setVisible(false);
         clearErrors();
         reset();
     };
@@ -49,7 +51,7 @@ export default function DeleteUserForm({ className = '' }) {
     return (
         <section className={`space-y-6 ${className}`}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">
+                <h2 className="text-lg font-medium text-white">
                     Delete Account
                 </h2>
 
@@ -62,16 +64,14 @@ export default function DeleteUserForm({ className = '' }) {
             </header>
 
 
-            <Button className='btn btn-error' label='Delete Account' onClick={confirmUserDeletion} />
-
-
-            <Modal show={confirmingUserDeletion} onClose={closeModal}>
+            <Button label="Delete Account" className='btn btn-error' onClick={() => setVisible(true)} />
+            <Dialog header="Delete Account" maximizable visible={visible} style={{ width: '50vw' }} onHide={(e) => closeModal(e)}>
                 <form onSubmit={deleteUser} className="p-6">
-                    <h2 className="text-lg font-medium text-gray-900">
+                    <h2 className="text-lg font-medium text-white">
                         Are you sure you want to delete your account?
                     </h2>
 
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-sm text-gray-500">
                         Once your account is deleted, all of its resources and
                         data will be permanently deleted. Please enter your
                         password to confirm you would like to permanently delete
@@ -79,43 +79,42 @@ export default function DeleteUserForm({ className = '' }) {
                     </p>
 
                     <div className="mt-6">
-                        <InputLabel
-                            htmlFor="password"
-                            value="Password"
-                            className="sr-only"
-                        />
 
-                        <TextInput
-                            id="password"
-                            type="password"
-                            name="password"
-                            ref={passwordInput}
-                            value={data.password}
-                            onChange={(e) =>
-                                setData('password', e.target.value)
-                            }
-                            className="mt-1 block w-3/4"
-                            isFocused
-                            placeholder="Password"
-                        />
+                        <div className='mb-6'>
+                            <FloatLabel>
+                                <Password inputId="password" ref={passwordInput} value={data.password} inputClassName='w-full' className='w-full' feedback={false} onChange={(e) => setData('password', e.target.value)} />
+                                <label htmlFor="password">Password</label>
+                            </FloatLabel>
+                            {errors.password && <span className='text-red-500'>{errors.password}</span>}
+                        </div>
 
-                        <InputError
-                            message={errors.password}
-                            className="mt-2"
-                        />
                     </div>
 
-                    <div className="mt-6 flex justify-end">
-                        <SecondaryButton onClick={closeModal}>
-                            Cancel
-                        </SecondaryButton>
+                    <div className="mt-6 flex flex-wrap gap-2 justify-between">
 
-                        <DangerButton className="ms-3" disabled={processing}>
-                            Delete Account
-                        </DangerButton>
+                        <Button className='btn btn-secondary' onClick={(e) => closeModal(e)} label='Cancel' />
+
+                        <Button className='btn btn-error' label='Delete Account' disabled={processing} />
+
+
                     </div>
                 </form>
-            </Modal>
+
+            </Dialog>
+
+
+            <dialog id="my_modal" className="modal">
+                <div className="modal-box">
+                    <form method="dialog">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+
+
+
+                    {/* <h3 className="font-bold text-lg">Hello!</h3>
+                    <p className="py-4">Press ESC key or click on ✕ button to close</p> */}
+                </div>
+            </dialog>
         </section>
     );
 }

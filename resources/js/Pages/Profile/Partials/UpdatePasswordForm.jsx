@@ -5,6 +5,11 @@ import TextInput from '@/Components/from_elements/TextInput';
 import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
+import { FloatLabel } from 'primereact/floatlabel';
+import { Password } from 'primereact/password';
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
+
 
 export default function UpdatePasswordForm({ className = '' }) {
     const passwordInput = useRef();
@@ -47,7 +52,7 @@ export default function UpdatePasswordForm({ className = '' }) {
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">
+                <h2 className="text-lg font-medium text-white">
                     Update Password
                 </h2>
 
@@ -58,71 +63,35 @@ export default function UpdatePasswordForm({ className = '' }) {
             </header>
 
             <form onSubmit={updatePassword} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel
-                        htmlFor="current_password"
-                        value="Current Password"
-                    />
 
-                    <TextInput
-                        id="current_password"
-                        ref={currentPasswordInput}
-                        value={data.current_password}
-                        onChange={(e) =>
-                            setData('current_password', e.target.value)
-                        }
-                        type="password"
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                    />
-
-                    <InputError
-                        message={errors.current_password}
-                        className="mt-2"
-                    />
+                <div className='mb-6 mt-3'>
+                    <FloatLabel>
+                        <InputText id="password" ref={currentPasswordInput} value={data.current_password} className='w-full' tooltip='Password' onChange={(e) => setData('current_password', e.target.value)} />
+                        <label htmlFor="password">Password</label>
+                    </FloatLabel>
+                    {errors.current_password && <span className='text-red-500'>{errors.current_password}</span>}
                 </div>
 
-                <div>
-                    <InputLabel htmlFor="password" value="New Password" />
-
-                    <TextInput
-                        id="password"
-                        ref={passwordInput}
-                        value={data.password}
-                        onChange={(e) => setData('password', e.target.value)}
-                        type="password"
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
+                <div className='mb-6 mt-3'>
+                    <FloatLabel>
+                        <InputText id="password" ref={passwordInput} value={data.password} className='w-full' tooltip='New Password' onChange={(e) => setData('password', e.target.value)} />
+                        <label htmlFor="password">New Password</label>
+                    </FloatLabel>
+                    {errors.password && <span className='text-red-500'>{errors.password}</span>}
                 </div>
 
-                <div>
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value="Confirm Password"
-                    />
 
-                    <TextInput
-                        id="password_confirmation"
-                        value={data.password_confirmation}
-                        onChange={(e) =>
-                            setData('password_confirmation', e.target.value)
-                        }
-                        type="password"
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                    />
-
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
-                </div>
+                    <div className='mb-6 mt-3'>
+                        <FloatLabel>
+                            <InputText id="confirm_password" value={data.password_confirmation} className='w-full' tooltip='Confirm Password' onChange={(e) => setData('password_confirmation', e.target.value)} />
+                            <label htmlFor="confirm_password">Confirm Password</label>
+                        </FloatLabel>
+                        {errors.password_confirmation && <span className='text-red-500'>{errors.password_confirmation}</span>}
+                    </div>
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+
+                    <Button className='btn btn-primary md:w-1/2 w-full' label='Save' disabled={processing} />
 
                     <Transition
                         show={recentlySuccessful}

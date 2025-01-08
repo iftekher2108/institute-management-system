@@ -60,7 +60,7 @@ export default function UpdateProfileInformation({
 
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
-                        <p className="mt-2 text-sm text-gray-800">
+                        <p className="mt-2 text-sm text-white">
                             Your email address is unverified.
                             <Link
                                 href={route('verification.send')}
@@ -83,7 +83,7 @@ export default function UpdateProfileInformation({
 
                 <div className="flex items-center gap-4">
 
-                    <Button label='Save' disabled={processing} />
+                    <Button label='Save' className='btn btn-primary md:w-1/2 w-full' disabled={processing} />
 
                     <Transition
                         show={recentlySuccessful}

@@ -57,13 +57,14 @@ export default function Login({ status, canResetPassword }) {
                         </FloatLabel>
                         {errors.password && <span className='text-red-500'>{errors.password}</span>}
                     </div>
+
                     <div className='flex justify-between items-center mb-6'>
                         <Checkbox className='checkbox checkbox-primary border-0' checked={data.remember} id='remember' onChange={e => setData('remember', e.checked)} />
                         <label htmlFor="remember" className="label">Remember me</label>
                     </div>
 
 
-                    <Button label='Login' className='w-full btn btn-primary' />
+                    <Button label='Login' className='btn btn-primary w-full' />
 
                 </form>
             </Card>
