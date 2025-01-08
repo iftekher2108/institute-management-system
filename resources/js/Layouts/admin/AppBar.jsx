@@ -4,7 +4,7 @@ function AppBar({title, user}) {
 
         <div className="navbar bg-primary sticky top-0 z-50">
             <div className="flex-1">
-                <Link href={route('home')} className="btn btn-ghost text-xl">Laravel</Link>
+                <Link href={route('home')} className="btn btn-white text-xl">Laravel</Link>
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">
@@ -16,8 +16,8 @@ function AppBar({title, user}) {
                                  {user.name}
                             </summary>
                             <ul className="w-full p-2">
-                                <li className="p-1"><Link href={route('profile.edit')}>Profile Settings</Link></li>
-                                <li className="p-1"><Link href={route('logout')} method="post" >Logout</Link></li>
+                                <li className="p-1 "><Link className="btn" href={route('profile.edit')}>Profile Settings</Link></li>
+                                <li className="p-1"><Link className="btn" href={route('logout')} method="post" >Logout</Link></li>
                             </ul>
                         </details>
                     </li>

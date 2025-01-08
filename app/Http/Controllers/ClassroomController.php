@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\employee;
+use App\Models\Classroom;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class EmployeeController extends Controller
+class ClassroomController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function employee_index()
+    public function classroom_index()
     {
-        return Inertia::render('employee/index');
+        return Inertia::render('classroom/index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function employee_create()
+    public function classroom_create()
     {
-        return Inertia::render('employee/create');
+        return Inertia::render('classroom/create');
     }
 
     /**
@@ -35,7 +35,7 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(employee $employee)
+    public function show(Classroom $classroom)
     {
         //
     }
@@ -43,7 +43,7 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(employee $employee)
+    public function edit(Classroom $classroom)
     {
         //
     }
@@ -51,7 +51,7 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, employee $employee)
+    public function update(Request $request, Classroom $classroom)
     {
         //
     }
@@ -59,7 +59,7 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(employee $employee)
+    public function destroy(Classroom $classroom)
     {
         //
     }

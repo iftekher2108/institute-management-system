@@ -14,8 +14,8 @@ function AppSideBar() {
                     <details>
                         <summary className='mb-1 p-4 p-ripple'>Classes<Ripple/></summary>
                         <ul>
-                            <li><a className='btn mb-1 p-ripple'>All Classes<Ripple/></a></li>
-                            <li><a className='btn mb-1 p-ripple'>Add class<Ripple/></a></li>
+                            <li><Link href={route('classroom.index')} className='btn mb-1 p-ripple'>All Classes<Ripple/></Link></li>
+                            <li><Link href={route('classroom.create')} className='btn mb-1 p-ripple'>Add class<Ripple/></Link></li>
                         </ul>
                     </details>
                 </li>
@@ -49,7 +49,7 @@ function AppSideBar() {
                         <summary className=' mb-1 p-4 p-ripple'>Employee<Ripple/></summary>
                         <ul>
                             <li><Link className='btn mb-1 p-ripple' href={route('employee.index')}>All Employees<Ripple/></Link></li>
-                            <li><a className='btn mb-1 p-ripple'>Add New<Ripple/></a></li>
+                            <li><Link href={route('employee.create')} className='btn mb-1 p-ripple'>Add New<Ripple/></Link></li>
                             <li><a className='btn mb-1 p-ripple' href="">Job Letter<Ripple/></a></li>
                             {/* <li><a href="">Manage Login</a></li> */}
                         </ul>
