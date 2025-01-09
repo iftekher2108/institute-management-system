@@ -64,7 +64,7 @@ export default function Login({ status, canResetPassword }) {
                     </div>
 
 
-                    <Button label='Login' className='btn btn-primary w-full' />
+                    <Button label='Login' disabled={processing} className='btn btn-primary w-full' />
 
                 </form>
             </Card>

@@ -19,7 +19,7 @@ export default {
 
                     accent: "#00d683",
 
-                    neutral: "#373A40",
+                    neutral: "#1f2937",
 
                     "base-100": "#1A1A1a",
 
