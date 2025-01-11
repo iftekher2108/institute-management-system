@@ -30,10 +30,12 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('zip')->nullable();
+            $table->string('district')->nullable();
+            $table->string('zipcode')->nullable();
             $table->bigInteger('status')->nullable();
             $table->date('paid_date');
+            
+
             $table->timestamps();
         });
     }

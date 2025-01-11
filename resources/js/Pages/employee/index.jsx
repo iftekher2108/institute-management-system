@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/react"
 import { Ripple } from "primereact/ripple"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-function Employee() {
+function Employee({employees}) {
     return (
         <AuthenticatedLayout header={
             'Employee'
@@ -35,7 +35,7 @@ function Employee() {
                 //  dataKey="id"
                 >
                     {/* <Column selectionMode="multiple" headerStyle={{ width: '3rem' }}></Column> */}
-                    <Column field="id" headerClassName="bg-primary/80" filter filterPlaceholder="Search by Id" header="Id"></Column>
+                    <Column field={employees.id} headerClassName="bg-primary/80" filter filterPlaceholder="Search by Id" header="Id"></Column>
                     <Column field="code" headerClassName="bg-primary/80" filter filterPlaceholder="Search by Code" sortable header="Code"></Column>
                     <Column field="name" headerClassName="bg-primary/80" filter filterPlaceholder="Search by Name" sortable header="Name"></Column>
                     <Column field="category" headerClassName="bg-primary/80" filter filterPlaceholder="Search by Category" sortable header="Category"></Column>

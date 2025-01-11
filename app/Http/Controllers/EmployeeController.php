@@ -13,7 +13,10 @@ class EmployeeController extends Controller
      */
     public function employee_index()
     {
-        return Inertia::render('employee/index');
+        $employees = employee::get();
+        return Inertia::render('employee/index',[
+            'employees' => $employees
+        ]);
     }
 
     /**
@@ -27,10 +30,44 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function employee_store(Request $request)
     {
-        //
+       $validator = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile' => 'nullable',
+            'role' => 'required',
+            'picture' => 'nullable|image|max:2048',
+            'join_date' => 'required',
+            'salary' => 'required',
+            'gender' => 'nullable',
+            'experience' => 'nullable',
+            'nid' => 'nullable',
+            'religion' => 'nullable',
+            'Last_edu' => 'nullable',
+            'blood' => 'nullable',
+            'dob' => 'nullable',
+            'address' => 'nullable',
+            'city' => 'nullable',
+            'state' => 'nullable',
+            'zip' => 'nullable',
+            'status' => 'nullable',
+            'paid_date' => 'required',
+
+        ]);
+
+        if(isset($validator['picture'])) {
+            $file_name = 'Employees'.time().'_'.date('d-m-Y').$validator['picture']->extension();
+            $file_path = 'employees/';
+            $validator['picture']->storeAs($file_path,$file_name,'public');
+            
+        }
+
+
+
+
     }
+
 
     /**
      * Display the specified resource.
