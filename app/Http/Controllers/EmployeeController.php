@@ -32,7 +32,8 @@ class EmployeeController extends Controller
      */
     public function employee_store(Request $request)
     {
-       $validator = $request->validate([
+
+      $request->validate([
             'name' => 'required',
             'email' => 'required',
             'mobile' => 'nullable',
@@ -53,17 +54,22 @@ class EmployeeController extends Controller
             'zip' => 'nullable',
             'status' => 'nullable',
             'paid_date' => 'required',
+       ]);
 
-        ]);
-
-        if(isset($validator['picture'])) {
-            $file_name = 'Employees'.time().'_'.date('d-m-Y').$validator['picture']->extension();
+        $employee = new employee;
+        if(isset($request->picture)) {
+            $file_name = 'Employees'.time().'_'.date('d-m-Y').$request->picture->extension();
             $file_path = 'employees/';
-            $validator['picture']->storeAs($file_path,$file_name,'public');
-            
+            $request->picture->storeAs($file_path,$file_name,'public');
+            $employee->picture = $file_path . $file_name;
         }
+        $employee->name = $request->name;
+        $employee->email = $request->email;
+        $employee->mobile = $request->mobile;
+        
 
-
+        $employee->save();
+        return redirect()->route('employee.index')->with('success','Employee created Successfully!');
 
 
     }
