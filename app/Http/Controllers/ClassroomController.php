@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classroom;
+use App\Models\employee;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +14,10 @@ class ClassroomController extends Controller
      */
     public function classroom_index()
     {
-        return Inertia::render('classroom/index');
+        $classrooms = Classroom::with('teacher')->get();
+        return Inertia::render('classroom/index',[
+            'classrooms' => $classrooms
+        ]);
     }
 
     /**
@@ -21,15 +25,29 @@ class ClassroomController extends Controller
      */
     public function classroom_create()
     {
-        return Inertia::render('classroom/create');
+        $teachers = employee::where('role','teacher')->where('status',1)->get();
+        return Inertia::render('classroom/create',[
+            'teachers' => $teachers
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function classroom_store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'fees' => 'required',
+            'teacher_id' => 'required',
+        ]);
+
+        $classroom = new Classroom();
+        $classroom->name = $request->name;
+        $classroom->fees = $request->fees;
+        $classroom->teacher_id = $request->teacher_id;
+        $classroom->save();
+        return redirect()->route('classroom.index')->with('success','Class room Created Successfully');
     }
 
     /**

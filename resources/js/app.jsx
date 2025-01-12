@@ -1,11 +1,12 @@
 import '../css/app.css';
 import './bootstrap';
-
+import 'primeicons/primeicons.css';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+
 
 // import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "primereact/resources/themes/lara-dark-blue/theme.css";

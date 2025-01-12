@@ -20,11 +20,11 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('teachers_in_classrooms',function(Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('teacher_id');
-            $table->unsignedBigInteger('classroom_id');
-         });
+        // Schema::create('teachers_in_classrooms',function(Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('teacher_id');
+        //     $table->unsignedBigInteger('classroom_id');
+        //  });
 
     }
 
@@ -34,6 +34,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('classrooms');
-        Schema::dropIfExists('teachers_in_classrooms');
+        // Schema::dropIfExists('teachers_in_classrooms');
     }
 };

@@ -13,9 +13,11 @@ function Employee_create() {
         name: '',
         mobile: '',
         role: '',
+        register_no:'',
         picture: undefined,
         join_date: '',
         salary: '',
+
         g_name: '',
         gender: '',
         experience: '',
@@ -28,6 +30,7 @@ function Employee_create() {
         city: '',
         district: '',
         zipcode: '',
+
         email: '',
         password: '',
         password_confirm: '',
@@ -166,6 +169,16 @@ function Employee_create() {
                                 <label htmlFor="salary">Salary <span className="text-red-500">*</span></label>
                             </FloatLabel>
                             {errors.salary && <span className='text-red-500'>{errors.salary}</span>}
+                        </div>
+                    </div>
+
+                    <div className="col-span-1">
+                        <div className='my-3'>
+                            <FloatLabel>
+                                <InputText id="register_no" type="number" value={data.register_no} className='w-full mb-1' onChange={(e) => setData('register_no', e.target.value)} />
+                                <label htmlFor="register_no">Register Number <span className="text-red-500">*</span></label>
+                            </FloatLabel>
+                            {errors.register_no && <span className='text-red-500'>{errors.register_no}</span>}
                         </div>
                     </div>
 
@@ -350,12 +363,9 @@ function Employee_create() {
                 </div>
 
                 <div className="flex flex-wrap gap-3 justify-between mb-3">
-                    <div className="">
-                        <Button label="Reset" onClick={(e) => reset_form(e)} className="btn w-52 btn-error" />
-                    </div>
-                    <div className="">
-                        <Button label="Submit" onClick={Submit} disabled={processing} className="btn w-52 btn-primary" />
-                    </div>
+                        <Button label="Reset" icon='pi pi-replay' onClick={(e) => reset_form(e)} className="btn btn-error" />
+                        <Button label="Submit" icon='pi pi-save' onClick={Submit} disabled={processing} className="btn btn-primary" />
+
                 </div>
 
 
