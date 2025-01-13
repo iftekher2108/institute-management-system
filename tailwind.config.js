@@ -13,9 +13,9 @@ export default {
         themes: [
             {
                 dark: {
-                    primary: "#009dff",
+                    primary: "#0064b9",
 
-                    secondary: "#0064b9",
+                    secondary: "#009dff",
 
                     accent: "#00d683",
 

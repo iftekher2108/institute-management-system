@@ -34,13 +34,17 @@ function AppSideBar() {
                             Subjects<Ripple />
                         </summary>
                         <ul>
-                            <li><a className='p-3 mb-1 p-ripple'>
-                                <i className='pi p-2 bg-primary text-white rounded pi-clone'></i>
-                                Subjects in Class<Ripple /></a>
+                            <li>
+                                <Link href={route('subject.index')} className='p-3 mb-1 p-ripple'>
+                                    <i className='pi p-2 bg-primary text-white rounded pi-clone'></i>
+                                    Subjects in Class<Ripple />
+                                </Link>
                             </li>
-                            <li><a className='p-3 mb-1 p-ripple'>
-                                <i className='pi p-2 bg-primary text-white rounded pi-external-link'></i>
-                                Assign Subjects<Ripple /></a>
+                            <li>
+                                <Link href={route('subject.create')} className='p-3 mb-1 p-ripple'>
+                                    <i className='pi p-2 bg-primary text-white rounded pi-external-link'></i>
+                                    Assign Subjects<Ripple />
+                                </Link>
                             </li>
                         </ul>
                     </details>

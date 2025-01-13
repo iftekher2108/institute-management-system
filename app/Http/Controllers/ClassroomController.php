@@ -25,7 +25,7 @@ class ClassroomController extends Controller
      */
     public function classroom_create()
     {
-        $teachers = employee::where('role','teacher')->where('status',1)->get();
+        $teachers = employee::where('role','teacher')->where('status',1)->get(['id','name']);
         return Inertia::render('classroom/create',[
             'teachers' => $teachers
         ]);

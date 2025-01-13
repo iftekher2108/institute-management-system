@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\SubjectController;
 use Inertia\Inertia;
 
 Route::get('/dashboard', function () {
@@ -33,6 +34,11 @@ Route::middleware('auth')->group(function () {
         Route::get('classroom', 'classroom_index')->name('classroom.index');
         Route::get('classroom/create', 'classroom_create')->name('classroom.create');
         Route::post('classroom/store', 'classroom_store')->name('classroom.store');
+    });
+
+    Route::controller(SubjectController::class)->group(function(){
+        Route::get('subject','sub_in_class')->name('subject.index');
+        Route::get('subject/create','sub_create')->name('subject.create');
     });
 
 });
