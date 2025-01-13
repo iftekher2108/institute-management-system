@@ -276,7 +276,7 @@ function Employee_edit({employee}) {
                 <div className="col-span-1">
                     <div className="my-3">
                         <FloatLabel>
-                            <Calendar id="dob" value={data.dob} onChange={(e) => setData('dob', e.target.value)} className="w-full mb-1" />
+                            <Calendar id="dob" value={data.dob ? new Date(data.dob) : null } onChange={(e) => setData('dob', e.target.value)} className="w-full mb-1" />
                             <label htmlFor="dob">Date of Birth</label>
                         </FloatLabel>
                     </div>

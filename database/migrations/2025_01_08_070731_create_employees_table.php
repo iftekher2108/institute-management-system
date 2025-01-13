@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('experience')->nullable();
             $table->string('nid')->nullable();
             $table->string('religion')->nullable();
-            $table->string('Last_edu')->nullable();
+            $table->string('last_edu')->nullable();
             $table->string('blood')->nullable();
             $table->date('dob')->nullable();
             $table->string('address')->nullable();
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('district')->nullable();
             $table->string('zipcode')->nullable();
             $table->bigInteger('status')->default(1);
-            $table->date('paid_date');
+            $table->date('paid_date')->nullable();
 
 
             $table->timestamps();

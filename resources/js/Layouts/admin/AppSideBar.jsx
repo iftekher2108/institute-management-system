@@ -4,7 +4,7 @@ function AppSideBar() {
 
 
     return (
-        <div className="card bg-neutral min-h-screen p-1">
+        <div className="card bg-neutral h-full min-h-screen p-1">
             <ul className="menu">
                 <li className='mb-1'>
                     <Link className='p-3 p-ripple' href={route('dashboard')}>
@@ -88,9 +88,9 @@ function AppSideBar() {
                     <details>
                         <summary className=' mb-1 p-3 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-credit-card'></i> Fees<Ripple /></summary>
                         <ul>
-                            <li><a className='p-3 mb-1 p-ripple'> Generate Fees Invoice<Ripple /></a></li>
-                            <li><a className='p-3 mb-1 p-ripple'> Collect Fees<Ripple /></a></li>
-                            <li><a className='p-3 mb-1 p-ripple' href=""> Collect Fees<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-file-pdf'></i> Generate Fees Invoice<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-clipboard'></i> Collect Fees<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-file-edit'></i>Fees Slip<Ripple /></a></li>
                             {/* <li><a href="">Fee Defaulters</a></li> */}
                         </ul>
                     </details>
@@ -110,75 +110,77 @@ function AppSideBar() {
 
                 <li className='mb-1'>
                     <details>
-                        <summary className=' mb-1 p-4 p-ripple'>Attendance<Ripple /></summary>
+                        <summary className=' mb-1 p-3 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-calendar-plus'></i> Attendance<Ripple /></summary>
                         <ul>
-                            <li><a className='btn mb-1 p-ripple'>Student Attendance<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple'>Teacher Attendance<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple' href="">Class Wise Report<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple'>Student Attendance Report<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple'>Teacher Attendance Report<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-calendar-clock'></i> Student Attendance<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-calendar-clock'></i> Teacher Attendance<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-chart-bar'></i> Class Wise Report<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-chart-line'></i> Student Attendance Report<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-chart-line'></i> Teacher Attendance Report<Ripple /></a></li>
                             {/* <li><a href="">Fee Defaulters</a></li> */}
                         </ul>
                     </details>
                 </li>
 
                 <li className='mb-1'>
-                    <Link href='' className='btn p-ripple'>Homework<Ripple /></Link>
+                    <Link href='' className='p-3 p-ripple'>
+                        <i className='pi p-2 bg-primary text-white rounded pi-book'></i> Homework<Ripple />
+                    </Link>
                 </li>
 
                 <li className='mb-1'>
                     <details>
-                        <summary className=' mb-1 p-4 p-ripple'>Exam<Ripple /></summary>
+                        <summary className=' mb-1 p-3 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-file-plus'></i> Exam<Ripple /></summary>
                         <ul>
-                            <li><a className='btn mb-1 p-ripple'>Create New<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple'>Edit/Delete<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple' href="">Add/Update Exam Mark<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple' href="">Result Card<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-file'></i> Edit/Delete<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-plus'></i> Create New<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-file-edit'></i> Add/Update Exam Mark<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-bookmark'></i> Result Card<Ripple /></a></li>
                         </ul>
                     </details>
                 </li>
 
                 <li className='mb-1'>
                     <details>
-                        <summary className=' mb-1 p-4 p-ripple'>Class Tests<Ripple /></summary>
+                        <summary className=' mb-1 p-3 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-clone'></i> Class Tests<Ripple /></summary>
                         <ul>
-                            <li><a className='btn mb-1 p-ripple'>Create New<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple'>Text Result<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-plus'></i> Create New<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-chart-scatter'></i> Text Result<Ripple /></a></li>
                         </ul>
                     </details>
                 </li>
 
                 <li className='mb-1'>
                     <details>
-                        <summary className=' mb-1 p-4 p-ripple'>Results<Ripple /></summary>
+                        <summary className=' mb-1 p-3 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-chart-bar'></i> Results<Ripple /></summary>
                         <ul>
-                            <li><a className='btn mb-1 p-ripple'>Students Report Card<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple'>Student Info Report<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple'>Parents Info Report<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-chart-line'></i> Students Report Card<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-id-card'></i> Student Info Report<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-chart-scatter'></i> Parents Info Report<Ripple /></a></li>
                         </ul>
                     </details>
                 </li>
 
                 <li className='mb-1'>
                     <details>
-                        <summary className=' mb-1 p-4 p-ripple'>Certificates<Ripple /></summary>
+                        <summary className=' mb-1 p-3 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-receipt'></i> Certificates<Ripple /></summary>
                         <ul>
-                            <li><a className='btn mb-1 p-ripple'>Leave Certificate<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple'>Character Certificate<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-file-export'></i> Leave Certificate<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-file-plus'></i> Character Certificate<Ripple /></a></li>
                         </ul>
                     </details>
                 </li>
 
                 <li className='mb-1'>
                     <details>
-                        <summary className=' mb-1 p-4 p-ripple'>Genarel Settings<Ripple /></summary>
+                        <summary className=' mb-1 p-3 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-cog'></i> Genarel Settings<Ripple /></summary>
                         <ul>
-                            <li><a className='btn mb-1 p-ripple'>Institute Profile<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple'>Fee management<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple' href="">Account information<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple' href="">Rules and Regulation<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple' href="">Mark Grading<Ripple /></a></li>
-                            <li><a className='btn mb-1 p-ripple' href="">Theme Settings<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-building-columns'></i> Institute Profile<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-wallet'></i> Fee management<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-credit-card'></i> Account information<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-flag'></i> Rules and Regulation<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-gauge'></i> Mark Grading<Ripple /></a></li>
+                            <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-palette'></i> Theme Settings<Ripple /></a></li>
                             {/* <li><a className='btn mb-1' href=""></a></li> */}
                         </ul>
                     </details>

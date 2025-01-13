@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/react";
-function AppBar({title, user}) {
+function AppBar({ title, user }) {
     return (
 
         <div className="navbar bg-primary sticky top-0 z-50">
@@ -9,15 +9,19 @@ function AppBar({title, user}) {
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">
                     {/* <li><a>Link</a></li> */}
-                    <li className="btn p-0 m-0">
+                    <li>
                         <details>
-                            <summary className="m-0">
+                            <summary className="p-4 bg-slate-900 focus:bg-slate-900 active:bg-slate-900 hover:bg-slate-900">
                                 <img src="" className="rounded size-6 me-2" alt="" />
-                                 {user.name}
+                                {user.name}
                             </summary>
                             <ul className="w-full p-2">
-                                <li className="p-1 "><Link className="btn" href={route('profile.edit')}>Profile Settings</Link></li>
-                                <li className="p-1"><Link className="btn" href={route('logout')} method="post" >Logout</Link></li>
+                                <li className="p-1"><Link className="p-3" href={route('profile.edit')}>
+                                    <i className="pi p-2 bg-primary text-white rounded pi-user"></i> Profile Settings</Link>
+                                </li>
+                                <li className="p-1"><Link className="p-3" href={route('logout')} method="post" >
+                                    <i className="pi p-2 bg-primary text-white rounded pi-sign-out"></i> Logout</Link>
+                                </li>
                             </ul>
                         </details>
                     </li>
