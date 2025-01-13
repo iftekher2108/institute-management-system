@@ -44,7 +44,7 @@ function TableAction(RowData) {
             icon: 'pi pi-pen-to-square',
             label: 'Edit',
             url: route('classroom.edit',RowData.id),
-            method: 'POST',
+            method: 'GET',
             template: itemRender
         },
         {
