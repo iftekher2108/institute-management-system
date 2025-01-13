@@ -12,10 +12,10 @@ class SubjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function sub_in_class()
+    public function subject_index()
     {
         $classrooms = Classroom::with('subject')->get();
-        return Inertia::render('subject/index',[
+        return Inertia::render('subject/index', [
             'classrooms' => $classrooms
         ]);
     }
@@ -23,11 +23,11 @@ class SubjectController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function sub_create()
+    public function subject_create()
     {
-        $classrooms = Classroom::get(['id','name']);
-        return Inertia::render('subject/create',[
-           'classrooms' => $classrooms
+        $classrooms = Classroom::get(['id', 'name']);
+        return Inertia::render('subject/create', [
+            'classrooms' => $classrooms
         ]);
     }
 
@@ -37,38 +37,72 @@ class SubjectController extends Controller
     public function subject_store(Request $request)
     {
         $request->validate([
-            'class' => 'required|string',
+            'class_id' => 'required',
             'subjects' => 'required|array',
-            'subjects.*.name' => 'required|string',
-            'subjects.*.marks' => 'required|integer',
+            'subjects.*.name' => 'required',
+            'subjects.*.mark' => 'required|numeric',
         ]);
 
-        foreach($request->subjects as $sub) {
-        $subject = new subject();
-        $subject->class_id = $request->class_id;
-        $subject->name = $sub['name'];
-        $subject->mark = $sub['mark'];
-        $subject->save();
+        // dd($request->all());
+
+        foreach ($request->subjects as $sub) {
+            $subject = new subject();
+            $subject->class_id = $request->class_id;
+            $subject->name = $sub['name'];
+            $subject->mark = $sub['mark'];
+            $subject->save();
         }
 
-        return redirect()->route('subject.index')->with('success', 'Subject Assign Successfully');
-
+        return redirect()->route('subject.index')->with('success', 'Subject Created Successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(subject $subject)
+    public function subject_edit($id)
     {
-        //
+        $classroom = Classroom::with('subject')->find($id);
+        $classrooms = Classroom::get(['id', 'name']);
+        return Inertia::render('subject/edit', [
+            'classroom' => $classroom,
+            'classrooms' => $classrooms
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(subject $subject)
+    public function subject_update(Request $request,$id)
     {
-        //
+        $request->validate([
+            'class_id' => 'required|exists:classrooms,id',
+            'subjects' => 'required|array',
+            'subjects.*.id' => 'nullable|exists:subjects,id',
+            'subjects.*.name' => 'required|string|max:255',
+            'subjects.*.mark' => 'required|integer|min:0',
+        ]);
+
+        // Update or create subjects
+        foreach ($request->subjects as $sub) {
+            if (isset($sub['id'])) {
+                // Update existing subject
+                $subject = Subject::find($sub['id']);
+                $subject->class_id = $request->class_id;
+                $subject->name = $sub['name'];
+                $subject->mark = $sub['mark'];
+                $subject->save();
+            } else {
+                // Create new subject
+                $subject = new Subject();
+                $subject->class_id = $request->class_id;
+                $subject->name = $sub['name'];
+                $subject->mark = $sub['mark'];
+                $subject->save();
+            }
+        }
+
+        return redirect()->route('subject.index')
+            ->with('success', 'Subjects updated successfully');
     }
 
     /**

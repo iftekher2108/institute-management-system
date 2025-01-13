@@ -146,7 +146,7 @@ function Employee_create() {
                     <div className="col-span-1">
                         <div className='my-3'>
                             <FloatLabel>
-                                <input id="picture" type="file" accept="image/*" className='p-inputtext w-full mb-1' onChange={(e) => setData('picture', e.target.files[0])} />
+                                <input id="picture" type="file" accept="image/*" className='file-input focus:outline-0 w-full mb-1' onChange={(e) => setData('picture', e.target.files[0])} />
                                 <label htmlFor="picture">Picture</label>
                             </FloatLabel>
                             {errors.picture && <span className='text-red-500'>{errors.picture}</span>}

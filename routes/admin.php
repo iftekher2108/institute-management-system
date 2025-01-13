@@ -34,11 +34,17 @@ Route::middleware('auth')->group(function () {
         Route::get('classroom', 'classroom_index')->name('classroom.index');
         Route::get('classroom/create', 'classroom_create')->name('classroom.create');
         Route::post('classroom/store', 'classroom_store')->name('classroom.store');
+        Route::get('classroom/{id}/edit', 'classroom_edit')->name('classroom.edit');
+        Route::put('classroom/{id}/update', 'classroom_update')->name('classroom.update');
+        Route::delete('classroom/{id}/delete', 'classroom_delete')->name('classroom.delete');
     });
 
     Route::controller(SubjectController::class)->group(function(){
-        Route::get('subject','sub_in_class')->name('subject.index');
-        Route::get('subject/create','sub_create')->name('subject.create');
+        Route::get('subject','subject_index')->name('subject.index');
+        Route::get('subject/create','subject_create')->name('subject.create');
+        Route::post('subject/store','subject_store')->name('subject.store');
+        Route::get('subject/{id}/edit','subject_edit')->name('subject.edit');
+        Route::put('subject/{id}/update','subject_update')->name('subject.update');
     });
 
 });

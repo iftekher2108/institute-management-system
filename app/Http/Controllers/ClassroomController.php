@@ -53,32 +53,37 @@ class ClassroomController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Classroom $classroom)
+    public function classroom_edit($id)
     {
-        //
+        $classroom = Classroom::find($id);
+        $teachers = employee::where('role','teacher')->where('status',1)->get(['id','name']);
+        return Inertia::render('classroom/edit',[
+            'classroom' => $classroom,
+            'teachers' => $teachers,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Classroom $classroom)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Classroom $classroom)
+    public function classroom_update(Request $request,$id)
     {
-        //
+        $classroom = Classroom::find($id);
+        $classroom->name = $request->name;
+        $classroom->fees = $request->fees;
+        $classroom->teacher_id = $request->teacher_id;
+        $classroom->save();
+        return redirect()->route('classroom.index')->with('success','Class room Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Classroom $classroom)
+    public function classroom_delete($id)
     {
-        //
+        $classroom = Classroom::find($id);
+        $classroom->delete();
+        return redirect()->route('classroom.index')->with('error','Class room delete Successfully');
     }
 }

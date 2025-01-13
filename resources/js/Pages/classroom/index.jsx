@@ -24,7 +24,7 @@ function TableAction(RowData) {
 
     const itemRender = (item) => (
         <div className='p-menuitem-content'>
-            <Link href={item.url} className="flex align-items-center p-menuitem-link">
+            <Link href={item.url} className="flex align-items-center p-menuitem-link" method={item.method} >
                 <span className={item.icon} />
                 <span className="mx-2">{item.label}</span>
                 {/* {item.badge && <Badge className="ml-auto" value={item.badge} />}
@@ -43,13 +43,15 @@ function TableAction(RowData) {
         {
             icon: 'pi pi-pen-to-square',
             label: 'Edit',
-            url: route('employee.edit',RowData.id),
+            url: route('classroom.edit',RowData.id),
+            method: 'POST',
             template: itemRender
         },
         {
             icon: 'pi pi-trash',
             label: "Delete",
-            url: route('dashboard'),
+            url: route('classroom.delete',RowData.id),
+            method:'DELETE',
             template: itemRender
         }
     ]
@@ -103,6 +105,7 @@ function Classroom({classrooms}) {
                     <Column field='id' headerClassName="bg-primary/80" style={{ width:'2rem' }} filter filterPlaceholder="Search by Id" header="Id"></Column>
                     <Column field='name' headerClassName="bg-primary/80" filter filterPlaceholder="Search by Name" sortable header="Name"></Column>
                     <Column field='teacher.name' headerClassName="bg-primary/80" filter filterPlaceholder="Search by Teacher" sortable header="Assigned Teacher"></Column>
+                    <Column field='fees' headerClassName="bg-primary/80" filter headerStyle={{ width: '1.5rem' }} filterPlaceholder="Search by Fees" header="Fees"></Column>
                     <Column headerClassName="bg-primary/80" header="Action" body={TableAction} ></Column>
 
                 </DataTable>

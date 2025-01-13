@@ -1,28 +1,33 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout"
+
 import { useForm } from "@inertiajs/react"
 import { FloatLabel } from "primereact/floatlabel";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 
-function Assign_subject({ classrooms }) {
+function Subject_edit({ classroom, classrooms }) {
 
-    const { data, setData, processing, post, reset, errors } = useForm({
-        class_id: '',
-        subjects: [{ name: '', mark: '' }]
+    const { data, setData, processing, put, reset, errors } = useForm({
+        class_id: classroom.id,
+        subjects: classroom.subject.map((subject) => ({
+            id: subject.id,
+            name: subject.name,
+            mark: subject.mark,
+        }))
 
     })
 
-    function handleAddMore(){
-        setData('subjects', [...data.subjects, { name: '', mark: '' }])
+    function handleAddMore() {
+        setData('subjects', [...data.subjects, { id: null, name: '', mark: '' }])
     }
 
-    function handleRemove(index){
+    function handleRemove(index) {
         const newSubjects = data.subjects.filter((_, i) => i !== index)
         setData('subjects', newSubjects)
     }
 
-    function handleChange(index, field, value){
+    function handleChange(index, field, value) {
         const newSubjects = [...data.subjects]
         newSubjects[index][field] = value
         setData('subjects', newSubjects)
@@ -32,20 +37,20 @@ function Assign_subject({ classrooms }) {
         reset()
     }
 
-    function handleSubmit(){
-        post(route('subject.store'), {
+    function handleSubmit() {
+        put(route('subject.update', classroom.id), {
             onSuccess: () => reset()
         })
     }
 
 
-
     return (
         <AuthenticatedLayout
             header={
-                'Assign Subject'
+                'Subject Edit & Assign'
             }
         >
+
             <div className="lg:grid grid-cols-2 gap-2 mb-3">
                 <div className="col-span-1">
                     <div className='my-3'>
@@ -110,15 +115,17 @@ function Assign_subject({ classrooms }) {
 
             <div className="flex flex-wrap gap-3 justify-between mb-3">
                 <Button label="Reset" icon='pi pi-replay' onClick={(e) => reset_form(e)} className="btn btn-error" />
-                <Button label="Submit" icon='pi pi-save' onClick={handleSubmit} disabled={processing} className="btn btn-primary" />
+                <Button label="Update" icon='pi pi-save' onClick={handleSubmit} disabled={processing} className="btn btn-primary" />
 
             </div>
-
 
 
         </AuthenticatedLayout>
     )
 }
 
-export default Assign_subject
+export default Subject_edit
+
+
+
 
