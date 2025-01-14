@@ -42,6 +42,7 @@ const AuthenticatedLayout = ({ header, children }) => {
                                 </h2>
                             </div>
                         )}
+
                         {children}
                     </div>
                 </Card>

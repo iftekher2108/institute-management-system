@@ -47,7 +47,7 @@ class ClassroomController extends Controller
         $classroom->fees = $request->fees;
         $classroom->teacher_id = $request->teacher_id;
         $classroom->save();
-        return redirect()->route('classroom.index')->with('success','Class room Created Successfully');
+        return redirect()->route('classroom.index')->with('success','Classroom Created Successfully');
     }
 
     /**
@@ -74,7 +74,7 @@ class ClassroomController extends Controller
         $classroom->fees = $request->fees;
         $classroom->teacher_id = $request->teacher_id;
         $classroom->save();
-        return redirect()->route('classroom.index')->with('success','Class room Updated Successfully');
+        return redirect()->route('classroom.index')->with('success','Classroom Updated Successfully');
     }
 
     /**
@@ -84,6 +84,6 @@ class ClassroomController extends Controller
     {
         $classroom = Classroom::find($id);
         $classroom->delete();
-        return redirect()->route('classroom.index')->with('error','Class room delete Successfully');
+        return redirect()->route('classroom.index')->with('error','Classroom Deleted Successfully');
     }
 }

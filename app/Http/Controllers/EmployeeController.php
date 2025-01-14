@@ -62,8 +62,8 @@ class EmployeeController extends Controller
         $employee = new employee();
 
         if(isset($request->picture)) {
-            $file_name = 'employee'.time().'_'.date('d-m-Y').'.'.$request->picture->extension();
             $file_path = 'employee/';
+            $file_name = 'employee_'.time().'_'.date('d-m-Y').'.'.$request->picture->extension();
             $request->picture->storeAs($file_path,$file_name,'public');
             $employee->picture = $file_path . $file_name;
         }
@@ -94,14 +94,14 @@ class EmployeeController extends Controller
         $employee->paid_date = date('Y-m-d');
 
         $employee->save();
-        return redirect()->route('employee.index')->with('success','Employee created Successfully!');
+        return redirect()->route('employee.index')->with('success','Employee Created Successfully!');
 
 
     }
 
 
     /**
-     * Display the specified resource.
+     *  Update the specified resource
      */
     public function employee_edit($id)
     {
@@ -111,13 +111,6 @@ class EmployeeController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(employee $employee)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -130,8 +123,10 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(employee $employee)
+    public function employee_delete($id)
     {
-        //
+        $employee = employee::find($id);
+        $employee->delete();
+        return redirect()->route('employee.index')->with('error','Employee Deleted Successfully!');
     }
 }

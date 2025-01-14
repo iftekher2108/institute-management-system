@@ -22,6 +22,7 @@ function TableAction(RowData) {
 
     const menu = useRef()
 
+
     const itemRender = (item) => (
         <div className='p-menuitem-content'>
             <Link href={item.url} className="flex align-items-center p-menuitem-link" method={item.method} >
@@ -44,14 +45,14 @@ function TableAction(RowData) {
             icon: 'pi pi-pen-to-square',
             label: 'Edit',
             url: route('classroom.edit',RowData.id),
-            method: 'GET',
+            method: 'get',
             template: itemRender
         },
         {
             icon: 'pi pi-trash',
             label: "Delete",
             url: route('classroom.delete',RowData.id),
-            method:'DELETE',
+            method:'delete',
             template: itemRender
         }
     ]

@@ -52,12 +52,26 @@ function AppSideBar() {
 
                 <li className='mb-1'>
                     <details>
-                        <summary className=' mb-1 p-3 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-users'></i> Students<Ripple /></summary>
+                        <summary className=' mb-1 p-3 p-ripple'>
+                            <i className='pi p-2 bg-primary text-white rounded pi-users'></i> Students<Ripple />
+                        </summary>
                         <ul>
-                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-user'></i> All Students<Ripple /></a></li>
-                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-user-plus'></i> Add New<Ripple /></a></li>
-                            <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-file'></i> Admission Letter<Ripple /></a></li>
-                            <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-file'></i> Student Id Card<Ripple /></a></li>
+                            <li><Link href={route('student.index')} className='p-3 mb-1 p-ripple'>
+                                <i className='pi p-2 bg-primary text-white rounded pi-user'></i>
+                                All Students<Ripple /></Link>
+                            </li>
+                            <li><Link href={route('student.create')} className='p-3 mb-1 p-ripple'>
+                                <i className='pi p-2 bg-primary text-white rounded pi-user-plus'></i>
+                                Add New<Ripple /></Link>
+                            </li>
+                            <li><a className='p-3 mb-1 p-ripple' href="">
+                                <i className='pi p-2 bg-primary text-white rounded pi-file'></i>
+                                Admission Letter<Ripple /></a>
+                            </li>
+                            <li><a className='p-3 mb-1 p-ripple' href="">
+                                <i className='pi p-2 bg-primary text-white rounded pi-file'></i>
+                                Student Id Card<Ripple /></a>
+                            </li>
                             {/* <li><a href="">Print basic list</a></li> */}
                             {/* <li><a href="">Manage Login</a></li> */}
                         </ul>

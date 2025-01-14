@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use Inertia\Inertia;
 
@@ -28,6 +29,14 @@ Route::middleware('auth')->group(function () {
         Route::get('employee/{id}/view-detail', 'employee_view_detail')->name('employee.view_detail');
         Route::post('employee/store','employee_store')->name('employee.store');
         Route::get('employee/{id}/edit','employee_edit')->name('employee.edit');
+        Route::put('employee/{id}/update','employee_update')->name('employee.update');
+        Route::delete('employee/{id}/delete','employee_delete')->name('employee.delete');
+    });
+
+    Route::controller(StudentController::class)->group(function(){
+        Route::get('student','student_index')->name('student.index');
+        Route::get('student/create','student_create')->name('student.create');
+        Route::post('student/store','student_store')->name('student.store');
     });
 
     Route::controller(ClassroomController::class)->group(function () {
