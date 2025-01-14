@@ -18,18 +18,19 @@ return new class extends Migration
             $table->unsignedBigInteger('class_id');
             $table->foreign('class_id')->references('id')->on('classrooms')->onDelete('cascade');
             $table->string('picture')->nullable();
-            $table->date('date_of_admition');
+            $table->date('date_of_admission');
             $table->bigInteger('discount_fee')->default(0);
+
             $table->string('mobile')->nullable();
             $table->date('dob')->nullable();
             $table->string('bid')->nullable();
-            $table->boolean('orphan')->nullable();
+            $table->boolean('orphan')->nullable()->default(0);
             $table->enum('gender', ["male","female"])->nullable();
             $table->string('identical_mark')->nullable();
             $table->string('prev_school')->nullable();
             $table->string('religion')->nullable();
             $table->string('blood')->nullable();
-            $table->bigInteger('prev_stu_id')->nullable();
+            $table->bigInteger('prev_stu_reg')->nullable();
             $table->bigInteger('prev_stu_roll')->nullable();
             $table->text('massage_note')->nullable();
             $table->string('g_name')->nullable();
@@ -46,8 +47,20 @@ return new class extends Migration
             $table->string('m_mobile')->nullable();
             $table->string('m_profession')->nullable();
             $table->string('m_income')->nullable();
+
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('district')->nullable();
+            $table->string('zipcode')->nullable();
+
+            $table->string('email');
+            $table->string('password');
             $table->bigInteger('status')->default(1);
+
+            $table->date('paid_date')->nullable();
+            $table->bigInteger('paid_fees')->nullable();
             $table->timestamps();
+
         });
     }
 

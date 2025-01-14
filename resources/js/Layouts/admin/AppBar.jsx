@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/react";
-function AppBar({ title, user }) {
+function AppBar({ user }) {
     return (
 
         <div className="navbar bg-primary sticky top-0 z-50">

@@ -7,10 +7,16 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
+use App\Models\employee;
+use App\Models\Student;
 use Inertia\Inertia;
-
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    $student_total = Student::count();
+    $employee_total = employee::count();
+    return Inertia::render('Dashboard',[
+        'student_total' => $student_total,
+        'employee_total' => $employee_total
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

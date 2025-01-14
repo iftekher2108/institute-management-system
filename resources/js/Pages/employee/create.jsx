@@ -286,8 +286,8 @@ function Employee_create() {
                     <div className="col-span-3">
                         <div className="my-3">
                             <FloatLabel>
-                                <InputTextarea className="w-full mb-1" value={data.address} onChange={(e) => setData('address', e.target.value)} rows={3} />
-                                <label htmlFor="dob">Address</label>
+                                <InputTextarea className="w-full mb-1" value={data.address} onChange={(e) => setData('address', e.target.value)} rows={2} />
+                                <label htmlFor="address">Address</label>
                             </FloatLabel>
                         </div>
                     </div>

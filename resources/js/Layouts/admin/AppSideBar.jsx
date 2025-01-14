@@ -4,8 +4,8 @@ function AppSideBar() {
 
 
     return (
-        <div className="card bg-neutral h-full min-h-screen p-1">
-            <ul className="menu">
+        <div className="card bg-neutral h-screen overflow-y-scroll sticky top-16 z-30 p-1">
+            <ul className="menu sticky">
                 <li className='mb-1'>
                     <Link className='p-3 p-ripple' href={route('dashboard')}>
                         <i className='pi p-2 bg-primary text-white rounded pi-home'></i> Dashboard<Ripple />

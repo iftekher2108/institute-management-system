@@ -1,7 +1,4 @@
 
-import Dropdown from '@/Components/from_elements/Dropdown';
-import NavLink from '@/Components/from_elements/NavLink';
-import ResponsiveNavLink from '@/Components/from_elements/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 import AppBar from '@/Layouts/admin/AppBar';
@@ -27,9 +24,9 @@ const AuthenticatedLayout = ({ header, children }) => {
     return (
 
         <>
-            <AppBar title={'parvez'} user={user} />
+            <AppBar user={user} />
             <Toast ref={toast} position='top-right' />
-            <div className='grid grid-cols-12 gap-3 p-2'>
+            <div className='grid grid-cols-12 gap-3 p-3'>
                 <div className="col-span-3">
                     <AppSideBar />
                 </div>
