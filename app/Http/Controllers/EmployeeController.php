@@ -49,7 +49,7 @@ class EmployeeController extends Controller
             'name' => 'required|string',
             'register_no' => 'required|integer',
             'role' => 'required|string',
-            'picture' => 'nullable|image|max:2048',
+            'picture' => 'required|image|max:2048',
             'join_date' => 'required|date',
             'salary' => 'required|integer',
 
@@ -76,7 +76,7 @@ class EmployeeController extends Controller
 
         $employee = new employee();
 
-        if(isset($request->picture)) {
+        if($request->hasFile('picture')) {
             $file_path = 'employee/';
             $file_name = 'employee_'.time().'_'.date('d-m-Y').'.'.$request->picture->extension();
             $request->picture->storeAs($file_path,$file_name,'public');
@@ -132,11 +132,12 @@ class EmployeeController extends Controller
      */
     public function employee_update(Request $request,$id)
     {
+
         $request->validate([
             'name' => 'required|string',
             'register_no' => 'required|integer',
             'role' => 'required|string',
-            'picture' => 'nullable',
+            'picture' => 'nullable|image|max:2048',
             'join_date' => 'required|date',
             'salary' => 'required|integer',
 
@@ -154,14 +155,14 @@ class EmployeeController extends Controller
             'zipcode' => 'nullable',
 
 
-
             'email' => 'required',
             'password' => 'required',
        ]);
 
+
        $employee =employee::find($id);
 
-        if(isset($request->picture)) {
+        if($request->hasFile('picture')) {
             $file_path = 'employee/';
             $file_name = 'employee_'.time().'_'.date('d-m-Y').'.'.$request->picture->extension();
             $request->picture->storeAs($file_path,$file_name,'public');

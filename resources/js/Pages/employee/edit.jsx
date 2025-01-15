@@ -9,6 +9,7 @@ import { Button } from "primereact/button"
 
 function Employee_edit({employee}) {
 
+    console.log(employee)
     const { data, setData, put, processing, errors, reset } = useForm({
         name: employee.name,
         mobile: employee.mobile,
@@ -33,7 +34,7 @@ function Employee_edit({employee}) {
 
         email: employee.email,
         password: employee.password,
-        password_confirm: employee.password_confirm,
+        password_confirm: '',
 
     })
 
@@ -83,16 +84,18 @@ function Employee_edit({employee}) {
         { label: 'AB-', value: 'ab-' },
     ]
 
-    function reset_form() {
+    function reset_form(e) {
+        e.preventDefault()
         reset()
     }
 
 
-    function Submit() {
+    function Submit(e) {
+        e.preventDefault()
         put(route('employee.update',employee.id), {
             onSuccess: () => reset()
         })
-        console.log('form data Updated')
+        console.log(`form data Updated ${data.name}`)
     }
 
 
@@ -105,13 +108,14 @@ function Employee_edit({employee}) {
             <h3 className="text-lg text-white/85 border-b border-primary py-2 mb-3">
                 <span className="p-3 bg-primary rounded-t">General Information</span>
             </h3>
+            <form onSubmit={Submit} encType="multipart/form-data">
             <div className="lg:grid grid-cols-3 gap-2 mb-3">
 
                 <div className="col-span-1">
                     <div className='my-3'>
                         <FloatLabel>
-                            <InputText id="name" value={data.name} className='w-full mb-1' onChange={(e) => setData('name', e.target.value)} />
-                            <label htmlFor="name">Name <span className="text-red-500">*</span></label>
+                            <InputText  value={data.name} className='w-full mb-1' onChange={(e) => setData('name', e.target.value)} />
+                            <label >Name <span className="text-red-500">*</span></label>
                         </FloatLabel>
                         {errors.name && <span className='text-red-500'>{errors.name}</span>}
                     </div>
@@ -362,10 +366,12 @@ function Employee_edit({employee}) {
             </div>
 
             <div className="flex flex-wrap gap-3 justify-between mb-3">
-                <Button label="Reset" icon='pi pi-replay' onClick={() => reset_form()} className="btn btn-error" />
-                <Button label="Update" icon='pi pi-save' onClick={Submit} disabled={processing} className="btn btn-primary" />
+                <Button label="Reset" icon='pi pi-replay' onClick={(e) => reset_form(e)} className="btn btn-error" />
+                <Button label="Update" icon='pi pi-save' disabled={processing} className="btn btn-primary" />
 
             </div>
+
+            </form>
 
 
         </AuthenticatedLayout>

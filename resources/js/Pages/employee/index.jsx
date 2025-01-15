@@ -88,6 +88,10 @@ function Employee({ employees }) {
     const [selectedProducts, setSelectedProducts] = useState([null])
     // const toast = useRef()
 
+    function allDelete() {
+        
+    }
+
     return (
         <AuthenticatedLayout header={
             'Employee'
