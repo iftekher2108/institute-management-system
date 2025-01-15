@@ -1,7 +1,4 @@
-import InputError from '@/Components/from_elements/InputError';
-import InputLabel from '@/Components/from_elements/InputLabel';
-import PrimaryButton from '@/Components/from_elements/PrimaryButton';
-import TextInput from '@/Components/from_elements/TextInput';
+
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 
@@ -75,7 +72,7 @@ export default function Register() {
                     </div>
 
 
-                    <Button label='Register' className='w-full' />
+                    <Button label='Register' className='btn btn-primary w-full' disabled={processing} />
 
                 </form>
             </Card>

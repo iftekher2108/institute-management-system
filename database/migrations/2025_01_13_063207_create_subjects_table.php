@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreign('class_id')->references('id')->on('classrooms')->onDelete('cascade');
             $table->string('name');
             $table->float('mark');
+            $table->unsignedBigInteger('teacher_id')->nullable();
+            $table->foreign('teacher_id')->references('id')->on('employees');
             $table->timestamps();
         });
     }

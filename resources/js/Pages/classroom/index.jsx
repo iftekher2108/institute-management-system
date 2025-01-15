@@ -77,10 +77,6 @@ function Classroom({classrooms}) {
         header={
             'Class room'
         }>
-            <div className="flex justify-between mb-4">
-                <Button label="All Delete" icon="pi pi-trash" className="btn btn-error" />
-                <Link href={route('classroom.create')} className='btn p-ripple btn-primary overflow-hidden'><i className="pi pi-pen-to-square"></i> Create <Ripple /></Link>
-            </div>
 
             <div>
 
@@ -88,7 +84,7 @@ function Classroom({classrooms}) {
                 <Button type="button" icon="pi pi-file-excel" severity="success" rounded onClick={exportExcel} data-pr-tooltip="XLS" />
                 <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded onClick={exportPdf} data-pr-tooltip="PDF" /> */}
 
-                <DataTable
+                {/* <DataTable
                     showGridlines paginator
                     removableSort
                     value={classrooms}
@@ -109,8 +105,123 @@ function Classroom({classrooms}) {
                     <Column field='fees' headerClassName="bg-primary/80" filter headerStyle={{ width: '1.5rem' }} filterPlaceholder="Search by Fees" header="Fees"></Column>
                     <Column headerClassName="bg-primary/80" header="Action" body={TableAction} ></Column>
 
-                </DataTable>
+                </DataTable> */}
             </div>
+
+            <div className="flex justify-end gap-3">
+
+                <Link href={route('classroom.create')}  className="btn btn-primary p-ripple"><i className="pi pi-pen-to-square"></i> Create <Ripple /></Link>
+            </div>
+
+            <div className="grid grid-flow-dense grid-cols-3 p-4 gap-3">
+
+                {
+                    classrooms.map((classroom) => (
+                        <div key={classroom.id} className="col-span-1">
+                            <div className="card w-full shadow-lg border border-primary overflow-hidden bg-accent">
+                            <div className="flex justify-between gap-3 text-lg items-center p-4 font-bold w-full capitalize text-white">
+                                    <span className="text-xl">{classroom.name}</span>
+                                    <div className="flex gap-3">
+                                        <Link href={route('classroom.edit', classroom.id)} ><i className="pi p-3 bg-primary rounded p-ripple pi-pencil"><Ripple/></i></Link>
+                                        <Link href={route('classroom.delete', classroom.id)} method="delete" ><i className="pi p-3 bg-error rounded p-ripple pi-trash"><Ripple/></i></Link>
+                                    </div>
+                                </div>
+                                <div className="card-body">
+
+                                    <div className="flex justify-between gap-2 mb-1">
+                                        {/* <span>Total Subject: </span> <span>{classroom.subject.length}</span> */}
+                                    </div>
+
+                                    <hr />
+
+                                    <div className="lg:grid grid-cols-3 gap-5 p-1 justify-between">
+                                        <div className="col-span-1">
+                                            <h3 className="text-primary">
+                                                Student
+                                            </h3>
+                                        </div>
+
+                                        <div className="col-span-1">
+                                            <p>-</p>
+                                        </div>
+
+                                        <div className="col-span-1">
+                                            <h3 className="text-primary">
+                                                Total
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <div className="lg:grid grid-cols-3 gap-5  p-1 justify-between">
+                                            <div className="col-span-1">
+                                                <p>
+                                                    Boys
+                                                </p>
+                                            </div>
+
+                                            <div className="col-span-1">
+                                                <p>-</p>
+                                            </div>
+
+                                            <div className="col-span-1">
+                                                <p>
+                                                    { classroom.student.filter(student => student.gender === 'male').length }
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div className="lg:grid grid-cols-3 gap-5  p-1 justify-between">
+                                            <div className="col-span-1">
+                                                <p>
+                                                    Girls
+                                                </p>
+                                            </div>
+
+                                            <div className="col-span-1">
+                                                <p>-</p>
+                                            </div>
+
+                                            <div className="col-span-1">
+                                                <p>
+                                                { classroom.student.filter(student => student.gender === 'female').length }
+                                                </p>
+                                            </div>
+                                        </div>
+                                    {/* {classroom.subject.map((subject) => (
+                                        <div key={subject.id} className="lg:grid grid-cols-3 gap-5  p-1 justify-between">
+                                            <div className="col-span-1">
+                                                <p>
+                                                    {subject.name}
+                                                </p>
+                                            </div>
+
+                                            <div className="col-span-1">
+                                                <p>-</p>
+                                            </div>
+
+                                            <div className="col-span-1">
+                                                <p>
+                                                    {subject.mark}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))} */}
+
+                                    <hr />
+
+                                    <div className="flex justify-between gap-2 mb-1">
+                                        <span>Total: </span>{classroom.student.reduce((total, subject) => total + Number(subject.mark), 0)}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    ))
+                }
+
+            </div>
+
         </AuthenticatedLayout>
     )
 }

@@ -13,6 +13,13 @@ class subject extends Model
         'class_id',
         'name',
         'mark',
+        'teacher_id',
     ];
+
+
+
+    public function teacher() {
+        return $this->hasOne(employee::class,'teacher_id','id');
+    }
 
 }

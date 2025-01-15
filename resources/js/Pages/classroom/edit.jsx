@@ -5,12 +5,12 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 
-function Classroom_edit({classroom,teachers}) {
+function Classroom_edit({classroom}) {
 
       const { data, setData, processing, put, reset, errors } = useForm({
             name: classroom.name,
             fees:classroom.fees,
-            teacher_id: classroom.teacher_id,
+            // teacher_id: classroom.teacher_id,
 
         })
 
@@ -66,7 +66,7 @@ function Classroom_edit({classroom,teachers}) {
                     {errors.fees && <span className='text-red-500'>{errors.fees}</span>}
                 </div>
 
-                <div className='my-3'>
+                {/* <div className='my-3'>
                     <FloatLabel>
                         <Dropdown
                             value={data.teacher_id}
@@ -76,7 +76,7 @@ function Classroom_edit({classroom,teachers}) {
                         <label htmlFor="teacher">Teacher <span className="text-red-500">*</span></label>
                     </FloatLabel>
                     {errors.teacher_id && <span className='text-red-500'>{errors.teacher_id}</span>}
-                </div>
+                </div> */}
 
 
                 <div className="flex flex-wrap gap-3  justify-between mb-3">

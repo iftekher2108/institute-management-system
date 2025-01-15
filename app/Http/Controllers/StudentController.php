@@ -36,9 +36,21 @@ class StudentController extends Controller
      */
     public function student_store(Request $request)
     {
-        // $request->validate([
+        $request->validate([
+            'class_id' => 'required|integer',
+            'name' =>  'required|string',
+            'register_no' => 'required |integer',
+            'date_of_admission' => 'required |date',
+            'discount_fee' => 'required |integer',
+            'mobile' => 'required|integer',
+            'g_name' => 'required|string',
+            'g_nid' => 'required|integer',
+            'g_occupation' => 'required|string',
+            
 
-        // ]);
+
+        ]);
+
 
         // $student = new Student();
 

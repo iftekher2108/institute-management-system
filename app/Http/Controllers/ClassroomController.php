@@ -14,7 +14,7 @@ class ClassroomController extends Controller
      */
     public function classroom_index()
     {
-        $classrooms = Classroom::with('teacher')->get();
+        $classrooms = Classroom::with('student')->get();
         return Inertia::render('classroom/index',[
             'classrooms' => $classrooms
         ]);
@@ -25,10 +25,8 @@ class ClassroomController extends Controller
      */
     public function classroom_create()
     {
-        $teachers = employee::where('role','teacher')->where('status',1)->get(['id','name']);
-        return Inertia::render('classroom/create',[
-            'teachers' => $teachers
-        ]);
+        // $teachers = employee::where('role','teacher')->where('status',1)->get(['id','name']);
+        return Inertia::render('classroom/create');
     }
 
     /**
@@ -39,13 +37,11 @@ class ClassroomController extends Controller
         $request->validate([
             'name' => 'required',
             'fees' => 'required',
-            'teacher_id' => 'required',
         ]);
 
         $classroom = new Classroom();
         $classroom->name = $request->name;
         $classroom->fees = $request->fees;
-        $classroom->teacher_id = $request->teacher_id;
         $classroom->save();
         return redirect()->route('classroom.index')->with('success','Classroom Created Successfully');
     }
@@ -56,10 +52,9 @@ class ClassroomController extends Controller
     public function classroom_edit($id)
     {
         $classroom = Classroom::find($id);
-        $teachers = employee::where('role','teacher')->where('status',1)->get(['id','name']);
+        // $teachers = employee::where('role','teacher')->where('status',1)->get(['id','name']);
         return Inertia::render('classroom/edit',[
             'classroom' => $classroom,
-            'teachers' => $teachers,
         ]);
     }
 
@@ -72,7 +67,6 @@ class ClassroomController extends Controller
         $classroom = Classroom::find($id);
         $classroom->name = $request->name;
         $classroom->fees = $request->fees;
-        $classroom->teacher_id = $request->teacher_id;
         $classroom->save();
         return redirect()->route('classroom.index')->with('success','Classroom Updated Successfully');
     }

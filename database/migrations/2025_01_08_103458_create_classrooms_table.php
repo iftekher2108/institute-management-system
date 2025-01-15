@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('teacher_id');
-            $table->foreign('teacher_id')->references('id')->on('employees')->onDelete('cascade');
             $table->string('name');
             $table->float('fees');
             $table->timestamps();

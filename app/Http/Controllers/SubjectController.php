@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Classroom;
-use App\Models\subject;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\subject;
+use App\Models\employee;
+use App\Models\Classroom;
+use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
@@ -26,8 +27,10 @@ class SubjectController extends Controller
     public function subject_create()
     {
         $classrooms = Classroom::get(['id', 'name']);
+        $teachers = employee::where('role','teacher')->where('status',1)->get(['id','name']);
         return Inertia::render('subject/create', [
-            'classrooms' => $classrooms
+            'classrooms' => $classrooms,
+            'teachers' => $teachers,
         ]);
     }
 
@@ -50,6 +53,7 @@ class SubjectController extends Controller
             $subject->class_id = $request->class_id;
             $subject->name = $sub['name'];
             $subject->mark = $sub['mark'];
+            $subject->teacher_id = $sub['teacher_id'];
             $subject->save();
         }
 
@@ -62,10 +66,12 @@ class SubjectController extends Controller
     public function subject_edit($id)
     {
         $classroom = Classroom::with('subject')->find($id);
+        $teachers = employee::where('role','teacher')->where('status',1)->get(['id','name']);
         $classrooms = Classroom::get(['id', 'name']);
         return Inertia::render('subject/edit', [
             'classroom' => $classroom,
-            'classrooms' => $classrooms
+            'classrooms' => $classrooms,
+            'teachers' => $teachers,
         ]);
     }
 
@@ -90,6 +96,7 @@ class SubjectController extends Controller
                 $subject->class_id = $request->class_id;
                 $subject->name = $sub['name'];
                 $subject->mark = $sub['mark'];
+                $subject->teacher_id = $sub['teacher_id'];
                 $subject->save();
             } else {
                 // Create new subject
@@ -97,6 +104,7 @@ class SubjectController extends Controller
                 $subject->class_id = $request->class_id;
                 $subject->name = $sub['name'];
                 $subject->mark = $sub['mark'];
+                $subject->teacher_id = $sub['teacher_id'];
                 $subject->save();
             }
         }

@@ -9,12 +9,12 @@ import { Button } from "primereact/button"
 
 function Employee_edit({employee}) {
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, put, processing, errors, reset } = useForm({
         name: employee.name,
         mobile: employee.mobile,
         role: employee.role,
         register_no: employee.register_no,
-        picture: employee.picture,
+        picture:undefined,
         join_date: employee.join_date,
         salary: employee.salary,
 
@@ -89,7 +89,7 @@ function Employee_edit({employee}) {
 
 
     function Submit() {
-        post(route('employee.store'), {
+        put(route('employee.update',employee.id), {
             onSuccess: () => reset()
         })
         console.log('form data Updated')
@@ -164,7 +164,7 @@ function Employee_edit({employee}) {
                 <div className="col-span-1">
                     <div className='my-3'>
                         <FloatLabel>
-                            <InputText id="salary" name="picture" keyfilter='num' value={data.salary} validateOnly className='w-full mb-1' onChange={(e) => setData('salary', e.target.value)} />
+                            <InputText id="salary" type="number" value={data.salary}  className='w-full mb-1' onChange={(e) => setData('salary', e.target.value)} />
                             <label htmlFor="salary">Salary <span className="text-red-500">*</span></label>
                         </FloatLabel>
                         {errors.salary && <span className='text-red-500'>{errors.salary}</span>}
@@ -362,7 +362,7 @@ function Employee_edit({employee}) {
             </div>
 
             <div className="flex flex-wrap gap-3 justify-between mb-3">
-                <Button label="Reset" icon='pi pi-replay' onClick={(e) => reset_form(e)} className="btn btn-error" />
+                <Button label="Reset" icon='pi pi-replay' onClick={() => reset_form()} className="btn btn-error" />
                 <Button label="Update" icon='pi pi-save' onClick={Submit} disabled={processing} className="btn btn-primary" />
 
             </div>

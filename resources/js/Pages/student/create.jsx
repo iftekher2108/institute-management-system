@@ -578,7 +578,7 @@ function Student_create({ classrooms }) {
             </div>
 
             <div className="flex flex-wrap gap-3 justify-between mb-3">
-                <Button label="Reset" icon='pi pi-replay' onClick={(e) => reset_form(e)} className="btn btn-error" />
+                <Button label="Reset" icon='pi pi-replay' onClick={() => reset_form()} className="btn btn-error" />
                 <Button label="Submit" icon='pi pi-save' onClick={Submit} disabled={processing} className="btn btn-primary" />
 
             </div>

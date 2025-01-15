@@ -7,12 +7,11 @@ import { Dropdown } from "primereact/dropdown";
 // import { Image } from "primereact/image";
 
 
-function Classroom_create({teachers}) {
+function Classroom_create() {
 
     const { data, setData, processing, post, reset, errors } = useForm({
         name: '',
         fees:'',
-        teacher_id: '',
 
     })
 
@@ -68,7 +67,7 @@ function Classroom_create({teachers}) {
                         </FloatLabel>
                         {errors.fees && <span className='text-red-500'>{errors.fees}</span>}
                     </div>
-
+{/*
                     <div className='my-3'>
                         <FloatLabel>
                             <Dropdown
@@ -79,7 +78,7 @@ function Classroom_create({teachers}) {
                             <label htmlFor="teacher">Teacher <span className="text-red-500">*</span></label>
                         </FloatLabel>
                         {errors.teacher_id && <span className='text-red-500'>{errors.teacher_id}</span>}
-                    </div>
+                    </div> */}
 
 
                     <div className="flex flex-wrap gap-3  justify-between mb-3">

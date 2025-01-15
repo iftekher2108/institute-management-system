@@ -46,12 +46,27 @@ class EmployeeController extends Controller
     {
 
       $request->validate([
-            'name' => 'required',
-            'register_no' => 'required',
-            'role' => 'required',
+            'name' => 'required|string',
+            'register_no' => 'required|integer',
+            'role' => 'required|string',
             'picture' => 'nullable|image|max:2048',
-            'join_date' => 'required',
-            'salary' => 'required',
+            'join_date' => 'required|date',
+            'salary' => 'required|integer',
+
+            'g_name' => 'nullable|string',
+            'gender' => 'nullable|string',
+            'experience' => 'nullable|integer',
+            'nid' => 'nullable|integer',
+            'religion' => 'nullable|string',
+            'Last_edu' => 'nullable|string',
+            'blood' => 'nullable|string',
+            'dob' => 'nullable|date',
+            'address' => 'nullable|string',
+            'city' => 'nullable|string',
+            'district' => 'nullable|string',
+            'zipcode' => 'nullable',
+
+
 
             'email' => 'required',
             'password' => 'required',
@@ -115,9 +130,75 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, employee $employee)
+    public function employee_update(Request $request,$id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'register_no' => 'required|integer',
+            'role' => 'required|string',
+            'picture' => 'nullable',
+            'join_date' => 'required|date',
+            'salary' => 'required|integer',
+
+            'g_name' => 'nullable|string',
+            'gender' => 'nullable|string',
+            'experience' => 'nullable|integer',
+            'nid' => 'nullable|integer',
+            'religion' => 'nullable|string',
+            'Last_edu' => 'nullable|string',
+            'blood' => 'nullable|string',
+            'dob' => 'nullable|date',
+            'address' => 'nullable|string',
+            'city' => 'nullable|string',
+            'district' => 'nullable|string',
+            'zipcode' => 'nullable',
+
+
+
+            'email' => 'required',
+            'password' => 'required',
+       ]);
+
+       $employee =employee::find($id);
+
+        if(isset($request->picture)) {
+            $file_path = 'employee/';
+            $file_name = 'employee_'.time().'_'.date('d-m-Y').'.'.$request->picture->extension();
+            $request->picture->storeAs($file_path,$file_name,'public');
+            $employee->picture = $file_path . $file_name;
+        }
+
+        $employee->register_no = $request->register_no;
+        $employee->name = $request->name;
+        $employee->mobile = $request->mobile;
+        $employee->role = $request->role;
+        $employee->join_date = Carbon::parse($request->join_date)->format('Y-m-d');
+        $employee->salary = $request->salary;
+
+        $employee->g_name = $request->g_name;
+        $employee->gender = $request->gender;
+        $employee->experience = $request->experience;
+        $employee->nid = $request->nid;
+        $employee->religion = $request->religion;
+        $employee->Last_edu = $request->last_edu;
+        $employee->blood = $request->blood;
+        $employee->dob = Carbon::parse($request->dob)->format('Y-m-d');
+        $employee->address = $request->address;
+        $employee->city = $request->city;
+        $employee->district = $request->district;
+        $employee->zipcode = $request->zipcode;
+
+        $employee->email = $request->email;
+        $employee->password = $request->password;
+        // $employee->status =
+        $employee->paid_date = date('Y-m-d');
+
+        $employee->save();
+        return redirect()->route('employee.index')->with('success','Employee Updated Successfully!');
+
+
+
+
     }
 
     /**
