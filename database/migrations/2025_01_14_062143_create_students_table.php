@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->date('dob')->nullable();
             $table->string('bid')->nullable();
-            $table->boolean('orphan')->nullable()->default(0);
+            $table->string('orphan',10)->nullable();
             $table->enum('gender', ["male","female"])->nullable();
             $table->string('identical_mark')->nullable();
             $table->string('prev_school')->nullable();

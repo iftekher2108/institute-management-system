@@ -67,8 +67,6 @@ class EmployeeController extends Controller
             'district' => 'nullable|string',
             'zipcode' => 'nullable',
 
-
-
             'email' => 'required',
             'password' => 'required',
        ]);
@@ -154,7 +152,6 @@ class EmployeeController extends Controller
             'city' => 'nullable|string',
             'district' => 'nullable|string',
             'zipcode' => 'nullable',
-
 
             'email' => 'required',
             'password' => 'required',

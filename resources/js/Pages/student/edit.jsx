@@ -7,53 +7,53 @@ import { Calendar } from "primereact/calendar"
 import { InputTextarea } from "primereact/inputtextarea"
 import { Button } from "primereact/button"
 
-function Student_create({ classrooms }) {
+function Student_update({ classrooms,student }) {
 
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        class_id: '',
-        name: '',
-        register_no: '',
+        class_id: student.class_id,
+        name: student.name,
+        register_no: student.register_no,
         picture: undefined,
-        date_of_admission: '',
-        discount_fee: '',
-        mobile: '',
+        date_of_admission: student.date_of_admission,
+        discount_fee: student.discount_fee,
+        mobile: student.mobile,
 
-        g_name: '',
-        g_nid: '',
-        g_occupation: '',
-        g_edu: '',
-        g_mobile: '',
-        g_profession: '',
-        g_income: '',
+        g_name: student.g_name,
+        g_nid: student.g_nid,
+        g_occupation: student.g_occupation,
+        g_edu: student.g_edu,
+        g_mobile: student.g_mobile,
+        g_profession: student.g_profession,
+        g_income: student.g_income,
 
-        m_name: '',
-        m_nid: '',
-        m_occupation: '',
-        m_edu: '',
-        m_mobile: '',
-        m_profession: '',
-        m_income: '',
+        m_name: student.m_name,
+        m_nid: student.m_nid,
+        m_occupation: student.m_occupation,
+        m_edu: student.m_edu,
+        m_mobile: student.m_mobile,
+        m_profession: student.m_profession,
+        m_income: student.m_income,
 
-        gender: '',
-        religion: '',
-        prev_school: '',
-        prev_stu_reg: '',
-        prev_stu_roll: '',
-        massage_note: '',
-        dob: '',
-        bid: '',
-        blood: '',
-        identical_mark: '',
-        orphan: '',
+        gender: student.gender,
+        religion: student.religion,
+        prev_school: student.prev_school,
+        prev_stu_reg: student.prev_stu_reg,
+        prev_stu_roll: student.prev_stu_roll,
+        massage_note: student.massage_note,
+        dob: student.dob,
+        bid: student.bid,
+        blood: student.blood,
+        identical_mark: student.identical_mark,
+        orphan: student.orphan,
 
-        address: '',
-        city: '',
-        district: '',
-        zipcode: '',
+        address: student.address,
+        city: student.city,
+        district: student.district,
+        zipcode: student.zipcode,
 
-        email: '',
-        password: '',
+        email: student.email,
+        password: student.password,
         // password_confirm: '',
 
 
@@ -108,7 +108,7 @@ function Student_create({ classrooms }) {
     }
 
     function Submit() {
-        post(route('student.store'), {
+        post(route('student.update',student.id), {
             onSuccess: () => reset()
         })
     }
@@ -117,7 +117,7 @@ function Student_create({ classrooms }) {
     return (
         <AuthenticatedLayout
             header={
-                'Student Create'
+                'Student Update'
             }
         >
             <h3 className="text-lg text-white/85 border-b border-primary py-2 mb-3">
@@ -176,7 +176,7 @@ function Student_create({ classrooms }) {
                 <div className="col-span-1">
                     <div className="my-3">
                         <FloatLabel>
-                            <Calendar id="date_of_admission" value={data.date_of_admission} onChange={(e) => setData('date_of_admission', e.target.value)} className="w-full mb-1" />
+                            <Calendar id="date_of_admission" value={data.date_of_admission ? new Date(data.date_of_admission) : null } onChange={(e) => setData('date_of_admission', e.target.value)} className="w-full mb-1" />
                             <label htmlFor="date_of_admission">Admission Date <span className="text-red-500">*</span></label>
                         </FloatLabel>
                         {errors.date_of_admission && <span className='text-red-500'>{errors.date_of_admission}</span>}
@@ -216,7 +216,7 @@ function Student_create({ classrooms }) {
                 <div className="col-span-1">
                     <div className="my-3">
                         <FloatLabel>
-                            <Calendar id="dob" value={data.dob} onChange={(e) => setData('dob', e.target.value)} className="w-full mb-1" />
+                            <Calendar id="dob" value={data.dob ? new Date(data.dob) : null } onChange={(e) => setData('dob', e.target.value)} className="w-full mb-1" />
                             <label htmlFor="dob">Date of Birth</label>
                         </FloatLabel>
                     </div>
@@ -237,7 +237,7 @@ function Student_create({ classrooms }) {
                         <FloatLabel>
                             <Dropdown
                                 value={data.orphan}
-                                onChange={(e) => setData('orphan', e.target.value)} optionValue={orphans.value} options={orphans} optionLabel={orphans.label}
+                                onChange={(e) => setData('orphan', e.target.value)} optionValue={orphans.value} id="gender" options={orphans} optionLabel={orphans.label}
                                 className="w-full mb-1" />
 
                             <label htmlFor="orphan">Orphan</label>
@@ -251,7 +251,7 @@ function Student_create({ classrooms }) {
                         <FloatLabel>
                             <Dropdown
                                 value={data.gender}
-                                onChange={(e) => setData('gender', e.target.value)} optionValue={genders.value} options={genders} optionLabel={genders.label}
+                                onChange={(e) => setData('gender', e.target.value)} optionValue={genders.value} id="gender" options={genders} optionLabel={genders.label}
                                 className="w-full mb-1" />
 
                             <label htmlFor="gender">Gender</label>
@@ -449,8 +449,8 @@ function Student_create({ classrooms }) {
                 <div className="col-span-1">
                     <div className='my-3'>
                         <FloatLabel>
-                            <InputText  keyfilter={'int'} value={data.g_income} className='w-full mb-1' onChange={(e) => setData('g_income', e.target.value)} />
-                            <label >Father / Garden Income</label>
+                            <InputText id="g_income" keyfilter={'int'} value={data.g_income} className='w-full mb-1' onChange={(e) => setData('g_income', e.target.value)} />
+                            <label htmlFor="g_income">Father / Garden Income</label>
                         </FloatLabel>
                         {errors.g_income && <span className='text-red-500'>{errors.g_income}</span>}
                     </div>
@@ -578,7 +578,7 @@ function Student_create({ classrooms }) {
 
             <div className="flex flex-wrap gap-3 justify-between mb-3">
                 <Button label="Reset" icon='pi pi-replay' onClick={() => reset_form()} className="btn btn-error" />
-                <Button label="Submit" icon='pi pi-save' onClick={Submit} disabled={processing} className="btn btn-primary" />
+                <Button label="Update" icon='pi pi-save' onClick={Submit} disabled={processing} className="btn btn-primary" />
 
             </div>
 
@@ -587,5 +587,5 @@ function Student_create({ classrooms }) {
     )
 }
 
-export default Student_create
+export default Student_update
 

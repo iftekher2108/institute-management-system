@@ -2,7 +2,7 @@ import { Link } from "@inertiajs/react";
 function AppBar({ user }) {
     return (
 
-        <div className="navbar bg-primary sticky top-0 z-50">
+        <div className="navbar bg-primary sticky top-0 z-40">
             <div className="flex-1">
                 <Link href={route('home')} className="btn btn-white text-xl">School</Link>
             </div>

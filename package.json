@@ -21,6 +21,7 @@
         "vite": "^6.0"
     },
     "dependencies": {
+        "nprogress": "^0.2.0",
         "primeicons": "^7.0.0",
         "primereact": "^10.8.5"
     }

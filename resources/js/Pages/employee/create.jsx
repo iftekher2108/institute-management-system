@@ -33,7 +33,7 @@ function Employee_create() {
 
         email: '',
         password: '',
-        password_confirm: '',
+        // password_confirm: '',
 
 
 
@@ -93,7 +93,6 @@ function Employee_create() {
         post(route('employee.store'), {
             onSuccess: () => reset()
         })
-        console.log('form data submitted')
     }
 
     return (
@@ -328,7 +327,7 @@ function Employee_create() {
                     <span className="p-3 bg-primary rounded-t">Account Information</span>
                 </h3>
 
-                <div className="lg:grid grid-cols-3 gap-3 mb-3">
+                <div className="lg:grid grid-cols-2 gap-3 mb-3">
 
                     <div className="col-span-1">
                         <div className='my-3'>
@@ -350,7 +349,7 @@ function Employee_create() {
                         </div>
                     </div>
 
-                    <div className="col-span-1">
+                    {/* <div className="col-span-1">
                         <div className='my-3'>
                             <FloatLabel>
                                 <InputText id="password_confirm" value={data.password_confirm} className='w-full mb-1' onChange={(e) => setData('password_confirm', e.target.value)} />
@@ -358,7 +357,7 @@ function Employee_create() {
                             </FloatLabel>
                             {errors.password_confirm && <span className='text-red-500'>{errors.password_confirm}</span>}
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
 

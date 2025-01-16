@@ -22,7 +22,7 @@ function Classroom_edit({classroom}) {
             post(route('classroom.update',classroom.id), {
                 onSuccess: () => reset()
             })
-            console.log('form data submitted')
+
         }
 
 

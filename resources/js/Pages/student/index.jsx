@@ -41,7 +41,7 @@ function TableAction(RowData) {
 
     const itemRender = (item) => (
         <div className='p-menuitem-content'>
-            <Link href={item.url} className="flex align-items-center p-menuitem-link" method={item.method} >
+            <Link href={item.url} className="flex align-items-center p-menuitem-link">
                 <span className={item.icon} />
                 <span className="mx-2">{item.label}</span>
                 {/* {item.badge && <Badge className="ml-auto" value={item.badge} />}
@@ -54,22 +54,19 @@ function TableAction(RowData) {
         {
             icon: 'pi pi-eye',
             label: 'View Details',
-            url: route('employee.view_detail', RowData.id),
-            method: 'get',
+            url: route('student.view_detail', RowData.id),
             template: itemRender
         },
         {
             icon: 'pi pi-pen-to-square',
             label: 'Edit',
-            url: route('employee.edit', RowData.id),
-            method: 'get',
+            url: route('student.edit', RowData.id),
             template: itemRender
         },
         {
             icon: 'pi pi-trash',
             label: "Delete",
             url: route('employee.delete', RowData.id),
-            method: 'delete',
             template: itemRender
         }
     ]
@@ -121,7 +118,7 @@ function Student({students}) {
                     <Column body={TableImage} headerClassName="bg-primary/80" align="center" filter filterPlaceholder="Search by Name" sortable header="Picture"></Column>
                     <Column field='name' headerClassName="bg-primary/80" filter filterPlaceholder="Search by Name" sortable header="Name"></Column>
                     <Column field="register_no" headerClassName="bg-primary/80" filter filterPlaceholder="Search by Register Number" sortable header="Register Number"></Column>
-                    <Column field="role" headerClassName="bg-primary/80" filter filterPlaceholder="Search by Classroom" sortable header="Classroom"></Column>
+                    <Column field="classroom.name" headerClassName="bg-primary/80" filter filterPlaceholder="Search by Classroom" sortable header="Classroom"></Column>
                     {/* <Column field="status" headerClassName="bg-primary/80" body={TableStatus} sortable filter filterPlaceholder="Search by Status" header="Status"   ></Column> */}
                     <Column headerClassName="bg-primary/80" header="Action" body={TableAction} ></Column>
 

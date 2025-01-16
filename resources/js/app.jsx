@@ -30,7 +30,5 @@ createInertiaApp({
             <App {...props} />
             </PrimeReactProvider>);
     },
-    progress: {
-        color: '#4B5563',
-    },
+    progress:false,
 });

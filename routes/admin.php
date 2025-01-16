@@ -43,6 +43,9 @@ Route::middleware('auth')->group(function () {
         Route::get('student','student_index')->name('student.index');
         Route::get('student/create','student_create')->name('student.create');
         Route::post('student/store','student_store')->name('student.store');
+        Route::get('student/{id}/view-detail','student_view_detail')->name('student.view_detail');
+        Route::get('student/{id}/edit','student_edit')->name('student.edit');
+        Route::post('student/{id}/update','student_update')->name('student.update');
     });
 
     Route::controller(ClassroomController::class)->group(function () {

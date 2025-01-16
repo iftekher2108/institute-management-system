@@ -23,7 +23,6 @@ function Classroom_create() {
         post(route('classroom.store'), {
             onSuccess: () => reset()
         })
-        console.log('form data submitted')
     }
 
 
