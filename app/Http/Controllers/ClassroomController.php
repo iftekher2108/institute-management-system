@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Classroom;
-use App\Models\employee;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\employee;
+use App\Models\Classroom;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ClassroomController extends Controller
 {
@@ -77,6 +78,9 @@ class ClassroomController extends Controller
     public function classroom_delete($id)
     {
         $classroom = Classroom::find($id);
+        if(Storage::exists('public/' . $classroom->picture)) {
+            Storage::delete('public/' . $classroom->picture);
+        }
         $classroom->delete();
         return redirect()->route('classroom.index')->with('error','Classroom Deleted Successfully');
     }

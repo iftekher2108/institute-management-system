@@ -7,7 +7,7 @@ import { Dropdown } from "primereact/dropdown";
 
 function Classroom_edit({classroom}) {
 
-      const { data, setData, processing, put, reset, errors } = useForm({
+      const { data, setData, processing, post, reset, errors } = useForm({
             name: classroom.name,
             fees:classroom.fees,
             // teacher_id: classroom.teacher_id,
@@ -19,7 +19,7 @@ function Classroom_edit({classroom}) {
         }
 
         function Submit() {
-            put(route('classroom.update',classroom.id), {
+            post(route('classroom.update',classroom.id), {
                 onSuccess: () => reset()
             })
             console.log('form data submitted')

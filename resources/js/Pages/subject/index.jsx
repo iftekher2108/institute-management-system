@@ -16,7 +16,7 @@ function Sub_in_class({ classrooms }) {
                 </Link>
             </div>
 
-            <div className="grid grid-flow-dense grid-cols-3 p-4 gap-3">
+            <div className="grid grid-flow-dense grid-cols-2 p-4 gap-3">
                 {classrooms.map((classroom) => (
                     <div key={classroom.id} className="col-span-1">
                         <div className="card w-full shadow-lg border border-primary overflow-hidden bg-accent">
@@ -73,11 +73,11 @@ function Sub_in_class({ classrooms }) {
                                     </div>
 
                                     <div className="col-span-1">
-                                        <p>-</p>
+                                        <h3 className="text-primary">Mark</h3>
                                     </div>
 
                                     <div className="col-span-1">
-                                        <h3 className="text-primary">Mark</h3>
+                                        <h3 className="text-primary">Teacher</h3>
                                     </div>
                                 </div>
                                 {classroom.subject.map((subject) => (
@@ -90,11 +90,11 @@ function Sub_in_class({ classrooms }) {
                                         </div>
 
                                         <div className="col-span-1">
-                                            <p>-</p>
+                                            <p>{subject.mark}</p>
                                         </div>
 
                                         <div className="col-span-1">
-                                            <p>{subject.mark}</p>
+                                            <p>{subject.teacher?.name || 'No Teacher Assigned' }</p>
                                         </div>
                                     </div>
                                 ))}

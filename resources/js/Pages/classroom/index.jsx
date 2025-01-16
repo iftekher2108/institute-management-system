@@ -25,7 +25,7 @@ function TableAction(RowData) {
 
     const itemRender = (item) => (
         <div className='p-menuitem-content'>
-            <Link href={item.url} className="flex align-items-center p-menuitem-link" method={item.method} >
+            <Link href={item.url} className="flex align-items-center p-menuitem-link">
                 <span className={item.icon} />
                 <span className="mx-2">{item.label}</span>
                 {/* {item.badge && <Badge className="ml-auto" value={item.badge} />}
@@ -45,14 +45,12 @@ function TableAction(RowData) {
             icon: 'pi pi-pen-to-square',
             label: 'Edit',
             url: route('classroom.edit',RowData.id),
-            method: 'get',
             template: itemRender
         },
         {
             icon: 'pi pi-trash',
             label: "Delete",
             url: route('classroom.delete',RowData.id),
-            method:'delete',
             template: itemRender
         }
     ]
@@ -123,7 +121,7 @@ function Classroom({classrooms}) {
                                     <span className="text-xl">{classroom.name}</span>
                                     <div className="flex gap-3">
                                         <Link href={route('classroom.edit', classroom.id)} ><i className="pi p-3 bg-primary rounded p-ripple pi-pencil"><Ripple/></i></Link>
-                                        <Link href={route('classroom.delete', classroom.id)} method="delete" ><i className="pi p-3 bg-error rounded p-ripple pi-trash"><Ripple/></i></Link>
+                                        <Link href={route('classroom.delete', classroom.id)} ><i className="pi p-3 bg-error rounded p-ripple pi-trash"><Ripple/></i></Link>
                                     </div>
                                 </div>
                                 <div className="card-body">

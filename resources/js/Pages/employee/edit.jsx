@@ -10,7 +10,7 @@ import { Button } from "primereact/button"
 function Employee_edit({employee}) {
 
     console.log(employee)
-    const { data, setData, put, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset } = useForm({
         name: employee.name,
         mobile: employee.mobile,
         role: employee.role,
@@ -90,9 +90,8 @@ function Employee_edit({employee}) {
     }
 
 
-    function Submit(e) {
-        e.preventDefault()
-        put(route('employee.update',employee.id), {
+    function Submit() {
+        post(route('employee.update',employee.id), {
             onSuccess: () => reset()
         })
         console.log(`form data Updated ${data.name}`)
@@ -108,7 +107,6 @@ function Employee_edit({employee}) {
             <h3 className="text-lg text-white/85 border-b border-primary py-2 mb-3">
                 <span className="p-3 bg-primary rounded-t">General Information</span>
             </h3>
-            <form onSubmit={Submit} encType="multipart/form-data">
             <div className="lg:grid grid-cols-3 gap-2 mb-3">
 
                 <div className="col-span-1">
@@ -367,12 +365,9 @@ function Employee_edit({employee}) {
 
             <div className="flex flex-wrap gap-3 justify-between mb-3">
                 <Button label="Reset" icon='pi pi-replay' onClick={(e) => reset_form(e)} className="btn btn-error" />
-                <Button label="Update" icon='pi pi-save' disabled={processing} className="btn btn-primary" />
+                <Button label="Update" icon='pi pi-save' onClick={Submit} disabled={processing} className="btn btn-primary" />
 
             </div>
-
-            </form>
-
 
         </AuthenticatedLayout>
     )

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use Inertia\Inertia;
 use App\Models\employee;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
@@ -49,7 +50,7 @@ class EmployeeController extends Controller
             'name' => 'required|string',
             'register_no' => 'required|integer',
             'role' => 'required|string',
-            'picture' => 'required|image|max:2048',
+            'picture' => 'nullable|image|max:2048',
             'join_date' => 'required|date',
             'salary' => 'required|integer',
 
@@ -208,6 +209,9 @@ class EmployeeController extends Controller
     public function employee_delete($id)
     {
         $employee = employee::find($id);
+        if(Storage::exists('public/' . $employee->picture) ) {
+            Storage::delete('public/' . $employee->picture);
+        }
         $employee->delete();
         return redirect()->route('employee.index')->with('error','Employee Deleted Successfully!');
     }

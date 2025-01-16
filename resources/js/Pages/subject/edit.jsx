@@ -7,7 +7,7 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 
 function Subject_edit({ classroom, classrooms, teachers }) {
-    const { data, setData, processing, put, reset, errors } = useForm({
+    const { data, setData, processing, post, reset, errors } = useForm({
         class_id: classroom.id,
         subjects: classroom.subject.map((subject) => ({
             id: subject.id,
@@ -40,7 +40,7 @@ function Subject_edit({ classroom, classrooms, teachers }) {
     }
 
     function handleSubmit() {
-        put(route("subject.update", classroom.id), {
+        post(route("subject.update", classroom.id), {
             onSuccess: () => reset(),
         });
     }

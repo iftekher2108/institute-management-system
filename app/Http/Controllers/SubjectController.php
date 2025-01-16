@@ -15,7 +15,7 @@ class SubjectController extends Controller
      */
     public function subject_index()
     {
-        $classrooms = Classroom::with('subject')->get();
+        $classrooms = Classroom::with('subject.teacher')->get();
         return Inertia::render('subject/index', [
             'classrooms' => $classrooms
         ]);

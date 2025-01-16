@@ -19,7 +19,7 @@ class subject extends Model
 
 
     public function teacher() {
-        return $this->hasOne(employee::class,'teacher_id','id');
+        return $this->belongsTo(employee::class,'teacher_id','id');
     }
 
 }
