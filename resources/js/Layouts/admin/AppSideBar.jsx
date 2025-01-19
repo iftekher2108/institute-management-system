@@ -193,7 +193,10 @@ function AppSideBar() {
                     <details>
                         <summary className=' mb-1 p-3 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-cog'></i> Genarel Settings<Ripple /></summary>
                         <ul>
-                            <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-building-columns'></i> Institute Profile<Ripple /></a></li>
+                            <li><Link href={route('setting.institute_profile')} className='p-3 mb-1 p-ripple'>
+                                <i className='pi p-2 bg-primary text-white rounded pi-building-columns'></i>
+                                Institute Profile<Ripple /></Link>
+                            </li>
                             <li><a className='p-3 mb-1 p-ripple'><i className='pi p-2 bg-primary text-white rounded pi-wallet'></i> Fee management<Ripple /></a></li>
                             <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-credit-card'></i> Account information<Ripple /></a></li>
                             <li><a className='p-3 mb-1 p-ripple' href=""><i className='pi p-2 bg-primary text-white rounded pi-flag'></i> Rules and Regulation<Ripple /></a></li>

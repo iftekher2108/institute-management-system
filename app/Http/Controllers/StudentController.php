@@ -15,16 +15,18 @@ class StudentController extends Controller
      */
     public function student_index()
     {
-        $students = Student::with('classroom')->get()->map(function ($student) {
-            $student->image_url = $student->picture ? asset('storage/' . $student->picture) : null;
+        $students = Student::with('classroom')->get()->map(function($student){
+           $student->image_url = $student->picture ? asset('storage/' . $student->picture) : null;
             return $student;
         });
-        return Inertia::render('student/index',[
+
+        return Inertia::render('student/index', [
             'students' => $students
         ]);
     }
 
-    public function student_view_detail($id) {
+    public function student_view_detail($id)
+    {
         $student = student::with('classroom.subject.teacher')->find($id);
         $student->image_url = $student->picture ? asset('storage/' . $student->picture) : null;
         dd($student);
@@ -35,8 +37,8 @@ class StudentController extends Controller
      */
     public function student_create()
     {
-        $classrooms = Classroom::get(['id','name']);
-        return Inertia::render('student/create',[
+        $classrooms = Classroom::get(['id', 'name']);
+        return Inertia::render('student/create', [
             'classrooms' => $classrooms
         ]);
     }
@@ -50,9 +52,10 @@ class StudentController extends Controller
             'class_id' => 'required|integer',
             'name' =>  'required|string',
             'mobile' => 'nullable',
+            'roll' => 'nullable',
             'register_no' => 'required |integer',
             'date_of_admission' => 'required |date',
-            'picture' => 'nullable|image|max:2048',
+            'picture' => 'nullable|image|max:512',
             'discount_fee' => 'required |integer',
 
             'g_name' => 'nullable|string',
@@ -97,16 +100,17 @@ class StudentController extends Controller
 
         $student = new Student();
 
-        if($request->hasFile('picture')) {
+        if ($request->hasFile('picture')) {
             $file_path = 'student/';
-            $file_name = 'student_'.time().'_'.date('d-m-Y').'.'.$request->picture->extension();
-            $request->picture->storeAs($file_path,$file_name,'public');
+            $file_name = 'student_' . time() . '_' . date('d-m-Y') . '.' . $request->picture->extension();
+            $request->picture->storeAs($file_path, $file_name, 'public');
             $student->picture = $file_path . $file_name;
         }
 
         $student->class_id = $request->class_id;
         $student->name = $request->name;
         $student->mobile = $request->mobile;
+        $student->roll = $request->roll;
         $student->register_no = $request->register_no;
         $student->date_of_admission = Carbon::parse($request->date_of_admission)->format('Y-m-d');
         $student->discount_fee = $request->discount_fee;
@@ -149,12 +153,11 @@ class StudentController extends Controller
 
         $student->paid_date = date('Y-m-d');
 
-        $fees_amount = Classroom::where('id',$request->class_id)->first();
+        $fees_amount = Classroom::where('id', $request->class_id)->first();
         $student->paid_fees = $fees_amount->fees;
 
         $student->save();
-        return redirect()->route('student.index')->with('success','Student Created Successfully');
-
+        return redirect()->route('student.index')->with('success', 'Student Created Successfully');
     }
 
 
@@ -164,7 +167,7 @@ class StudentController extends Controller
     public function student_edit($id)
     {
         $student = student::find($id);
-        $classrooms = classroom::get(['id','name']);
+        $classrooms = classroom::get(['id', 'name']);
         return Inertia::render('student/edit', [
             'student' => $student,
             'classrooms' => $classrooms,
@@ -182,7 +185,8 @@ class StudentController extends Controller
             'register_no' => 'required',
             'date_of_admission' => 'required |date',
             'mobile' => 'nullable',
-            'picture' => 'nullable|image|max:2048',
+            'roll' => 'nullable',
+            'picture' => 'nullable|image|max:512',
             'discount_fee' => 'required',
 
             'g_name' => 'nullable|string',
@@ -227,10 +231,10 @@ class StudentController extends Controller
 
         $student = student::find($id);
 
-        if($request->hasFile('picture')) {
+        if ($request->hasFile('picture')) {
             $file_path = 'student/';
-            $file_name = 'student_'.time().'_'.date('d-m-Y').'.'.$request->picture->extension();
-            $request->picture->storeAs($file_path,$file_name,'public');
+            $file_name = 'student_' . time() . '_' . date('d-m-Y') . '.' . $request->picture->extension();
+            $request->picture->storeAs($file_path, $file_name, 'public');
             $student->picture = $file_path . $file_name;
         }
 
@@ -238,6 +242,7 @@ class StudentController extends Controller
         $student->name = $request->name;
         $student->register_no = $request->register_no;
         $student->mobile = $request->mobile;
+        $student->roll = $request->roll;
         $student->date_of_admission = Carbon::parse($request->date_of_admission)->format('Y-m-d');
         $student->discount_fee = $request->discount_fee;
 
@@ -279,12 +284,11 @@ class StudentController extends Controller
 
         $student->paid_date = date('Y-m-d');
 
-        $fees_amount = Classroom::where('id',$request->class_id)->first();
+        $fees_amount = Classroom::where('id', $request->class_id)->first();
         $student->paid_fees = $fees_amount->fees;
 
         $student->save();
-        return redirect()->route('student.index')->with('success','Student Updated Successfully');
-
+        return redirect()->route('student.index')->with('success', 'Student Updated Successfully');
     }
 
     /**

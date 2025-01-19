@@ -50,7 +50,7 @@ class EmployeeController extends Controller
             'name' => 'required|string',
             'register_no' => 'required|integer',
             'role' => 'required|string',
-            'picture' => 'nullable|image|max:2048',
+            'picture' => 'nullable|image|max:512',
             'join_date' => 'required|date',
             'salary' => 'required|integer',
 
@@ -136,7 +136,7 @@ class EmployeeController extends Controller
             'name' => 'required|string',
             'register_no' => 'required|integer',
             'role' => 'required|string',
-            'picture' => 'nullable|image|max:2048',
+            'picture' => 'nullable|image|max:512',
             'join_date' => 'required|date',
             'salary' => 'required|integer',
 

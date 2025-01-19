@@ -18,6 +18,7 @@ function Student_create({ classrooms }) {
         date_of_admission: '',
         discount_fee: '',
         mobile: '',
+        roll:'',
 
         g_name: '',
         g_nid: '',
@@ -191,6 +192,16 @@ function Student_create({ classrooms }) {
                             <label htmlFor="mobile">Mobile / Whatsapp </label>
                         </FloatLabel>
                         {errors.mobile && <span className='text-red-500'>{errors.mobile}</span>}
+                    </div>
+                </div>
+
+                <div className="col-span-1">
+                    <div className='my-3'>
+                        <FloatLabel>
+                            <InputText  keyfilter={'int'} value={data.roll} className='w-full mb-1' onChange={(e) => setData('roll', e.target.value)} />
+                            <label>Roll </label>
+                        </FloatLabel>
+                        {errors.roll && <span className='text-red-500'>{errors.roll}</span>}
                     </div>
                 </div>
 

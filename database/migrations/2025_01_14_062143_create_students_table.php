@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('date_of_admission');
             $table->bigInteger('discount_fee')->default(0);
 
+            $table->string('roll')->nullable();
             $table->string('mobile')->nullable();
             $table->date('dob')->nullable();
             $table->string('bid')->nullable();

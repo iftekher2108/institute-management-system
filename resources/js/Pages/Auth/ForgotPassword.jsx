@@ -1,8 +1,8 @@
-import InputError from '@/Components/from_elements/InputError';
-import PrimaryButton from '@/Components/from_elements/PrimaryButton';
-import TextInput from '@/Components/from_elements/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, useForm } from '@inertiajs/react';
+import { InputText } from 'primereact/inputtext';
+import { FloatLabel } from 'primereact/floatlabel';
+import { Button } from 'primereact/button';
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -32,22 +32,16 @@ export default function ForgotPassword({ status }) {
             )}
 
             <form onSubmit={submit}>
-                <TextInput
-                    id="email"
-                    type="email"
-                    name="email"
-                    value={data.email}
-                    className="mt-1 block w-full"
-                    isFocused={true}
-                    onChange={(e) => setData('email', e.target.value)}
-                />
-
-                <InputError message={errors.email} className="mt-2" />
+                <div className="my-3">
+                    <FloatLabel>
+                        <InputText value={data.email} className='w-full mb-1' onChange={(e) => setData('email', e.target.value)} />
+                        <label>Email</label>
+                    </FloatLabel>
+                    {errors.email && <span className='text-red-500'>{errors.email}</span>}
+                </div>
 
                 <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Email Password Reset Link
-                    </PrimaryButton>
+                    <Button icon='pi pi-save' className='btn btn-primary' disabled={processing} label='Email Password Reset Link' />
                 </div>
             </form>
         </GuestLayout>

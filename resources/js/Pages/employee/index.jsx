@@ -93,8 +93,8 @@ function Employee({ employees }) {
         <AuthenticatedLayout header={
             'Employee'
         }>
-            <div className="flex justify-between mb-4">
-                <Button label="All Delete" icon="pi pi-trash" className="btn btn-error" />
+            <div className="flex justify-end mb-4">
+                {/* <Button label="All Delete" icon="pi pi-trash" className="btn btn-error" /> */}
                 <Link href={route('employee.create')} className='btn p-ripple btn-primary overflow-hidden'><i className="pi pi-pen-to-square"></i> Create <Ripple /></Link>
             </div>
 

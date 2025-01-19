@@ -208,7 +208,7 @@ function Classroom({classrooms}) {
                                     <hr />
 
                                     <div className="flex justify-between gap-2 mb-1">
-                                        <span>Total: </span>{classroom.reduce((total, classr) => total + (classr.student?.length || 0), 0)}
+                                        <span>Total: </span>{classroom.student.length}
                                     </div>
 
                                 </div>
@@ -219,6 +219,7 @@ function Classroom({classrooms}) {
                 }
 
             </div>
+
 
         </AuthenticatedLayout>
     )

@@ -18,6 +18,7 @@ function Student_update({ classrooms,student }) {
         date_of_admission: student.date_of_admission,
         discount_fee: student.discount_fee,
         mobile: student.mobile,
+        roll: student.roll,
 
         g_name: student.g_name,
         g_nid: student.g_nid,
@@ -191,6 +192,16 @@ function Student_update({ classrooms,student }) {
                             <label htmlFor="mobile">Mobile / Whatsapp </label>
                         </FloatLabel>
                         {errors.mobile && <span className='text-red-500'>{errors.mobile}</span>}
+                    </div>
+                </div>
+
+                <div className="col-span-1">
+                    <div className='my-3'>
+                        <FloatLabel>
+                            <InputText  keyfilter={'int'} value={data.roll} className='w-full mb-1' onChange={(e) => setData('roll', e.target.value)} />
+                            <label>Roll </label>
+                        </FloatLabel>
+                        {errors.roll && <span className='text-red-500'>{errors.roll}</span>}
                     </div>
                 </div>
 

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\InstituteProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Models\employee;
@@ -22,6 +23,11 @@ Route::get('/dashboard', function () {
 require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
+
+    Route::controller(InstituteProfileController::class)->group(function(){
+        Route::get('setting/institute-profile','institute_profile')->name('setting.institute_profile');
+        Route::post('setting/institute-profile/store','institute_profile_store')->name('setting.institute_profile.store');
+    });
 
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'edit')->name('profile.edit');
